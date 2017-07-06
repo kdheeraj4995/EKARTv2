@@ -4,6 +4,7 @@
   "description": "Ecommerce using MEAN  ",
   "main": "app.js",
   "scripts": {
+    "start": "node Ekartv2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
