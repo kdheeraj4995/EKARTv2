@@ -1,0 +1,19 @@
+{
+  "name": "ekartv2",
+  "version": "2.0.0",
+  "description": "Ecommerce using MEAN  ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdheeraj4995/EKARTv2.git"
+  },
+  "author": "Dheeraj Reddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kdheeraj4995/EKARTv2/issues"
+  },
+  "homepage": "https://github.com/kdheeraj4995/EKARTv2#readme"
+}
