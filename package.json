@@ -18,6 +18,9 @@
   "homepage": "https://github.com/kdheeraj4995/EKARTv2#readme",
   "dependencies": {
     "angular": "^1.6.5",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29",
+    "mongoose": "^4.11.1",
+    "w3-css": "^4.0.4"
   }
 }
