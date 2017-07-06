@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/kdheeraj4995/EKARTv2/issues"
   },
-  "homepage": "https://github.com/kdheeraj4995/EKARTv2#readme"
+  "homepage": "https://github.com/kdheeraj4995/EKARTv2#readme",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "express": "^4.15.3"
+  }
 }
