@@ -3,7 +3,6 @@ var dbUrl = 'mongodb://localhost:27017/Ekartv2';
 
 mongoose.connect(dbUrl, { useMongoClient: true });
 
-
 // Events to capture Mongoose connection status :
 mongoose.connection.on('connected',function(){
     console.log("Mongoose connected to : "+dbUrl);
@@ -20,3 +19,6 @@ process.on('SIGINT',function(){
         process.exit(0);
     })
 })
+
+//Importing Models
+require('./userModel');
