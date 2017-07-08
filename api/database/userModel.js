@@ -14,4 +14,4 @@ var userSchema = new mongoose.Schema({
         required : true
     }
 });
-mongoose.model('user',userSchema);
+mongoose.model('userModel',userSchema);
