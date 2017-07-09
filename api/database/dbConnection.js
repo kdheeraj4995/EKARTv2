@@ -20,5 +20,5 @@ process.on('SIGINT',function(){
     })
 })
 
-//Importing Models
-require('./userModel');
+// Importing Models
+require('./User');

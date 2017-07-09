@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var userSchema = new mongoose.Schema({
     name : {
         type : String,
@@ -14,4 +13,4 @@ var userSchema = new mongoose.Schema({
         required : true
     }
 });
-mongoose.model('userModel',userSchema);
+mongoose.model('UserModel',userSchema);
