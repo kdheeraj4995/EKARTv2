@@ -22,3 +22,4 @@ process.on('SIGINT',function(){
 
 // Importing Models
 require('./User');
+require('./Supplier');
