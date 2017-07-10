@@ -18,7 +18,7 @@ router
     .post(supplierController.addSupplier)
     
 router
-    .route('/suppiers/:supplierId')
+    .route('/suppliers/:supplierId')
     .get(supplierController.getSupplier)
     .post(supplierController.updateSupplier)
     .delete(supplierController.deleteSupplier)

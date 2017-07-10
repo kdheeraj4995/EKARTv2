@@ -1,5 +1,4 @@
 require('./api/database/dbConnection');
-
 var express = require('express');
 var app = express();
 var path = require('path');

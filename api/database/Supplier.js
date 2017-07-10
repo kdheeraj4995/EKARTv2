@@ -6,7 +6,7 @@ var supplierSchema = new mongoose.Schema({
         unique : true,
         required : true
     },
-    Address : {
+    address : {
         plotno : {
             type : String,
             required : true

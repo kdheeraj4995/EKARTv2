@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var dbUrl = 'mongodb://localhost:27017/Ekartv2';
 
 mongoose.connect(dbUrl, { useMongoClient: true });
