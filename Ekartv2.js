@@ -5,7 +5,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var router = require('./api/routes/router');
 
-
 // Setting Port 
 app.set('port', 3000);
 
@@ -15,19 +14,16 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 // Set static directory
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/node_modules',express.static(path.join(__dirname,'/node_modules')));
 
 //Middleware for parsing post requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 // Api Routes
 app.use('/api', router);
-
 
 // ServerConfig - Start : Running Server on Port 3000 
 var server = app.listen(app.get('port'), function() {

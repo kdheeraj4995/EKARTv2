@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+<head>
+	<title>EKARTv2.0</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="node_modules/w3-css/3/w3.css" rel="stylesheet"> 
+	<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<!-- <style>
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.menu {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	li {
+		hover: none;
+	}
+</style> -->
+<body style="margin-top: 85px">
+	<div class="w3-top">
+		<nav>
+			<ul class="w3-navbar w3-black w3-card-2 w3-large " style="opacity: 0.9">
+				<li>
+                    <a class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+                        <i class="fa fa-home"></i> E K A R T
+                    </a>
+                </li>
+				<li style="float: right">
+                    <a href="#!Registration" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+						<span>Register</span>
+                        <i class="fa fa-user-plus"></i>
+                    </a>
+                </li>
+				<li style="float: right">
+					<a href="#!Login" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+                        <span>Login </span>
+                        <i class="fa fa-sign-in"></i>
+					</a>
+				</li>
+				<li style="float: right">
+					<a href="#!logout" class="w3-hover-none w3-text-sand w3-hover-text-white">
+                        <span>Logout </span>
+                        <i class="fa fa-sign-out"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- <div data-ng-view data-ng-controller="UserController"> -->
+    <div data-ng-view ></div>
+
+
+	
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>	
+	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="config/App.js"></script>
+	<script type="text/javascript" src="config/UserController.js"></script>
+</body>
+
+</html>

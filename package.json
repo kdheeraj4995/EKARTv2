@@ -19,11 +19,15 @@
   "homepage": "https://github.com/kdheeraj4995/EKARTv2#readme",
   "dependencies": {
     "angular": "^1.6.5",
+    "angular-route": "^1.6.5",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
     "express": "^4.15.3",
+    "jquery": "^3.2.1",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.1",
-    "w3-css": "^4.0.4"
+    "w3-css": "^4.0.4",
+    "w3css": "^2.7.0"
   }
 }

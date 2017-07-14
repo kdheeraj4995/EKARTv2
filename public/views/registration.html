@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<div class="container">
+    <section id="content">
+        <form method="post" data-ng-submit="submit()">
+            <h1>Registration</h1>
+            <div>
+                <input type="text" placeholder="Name" required data-ng-model="name" />
+            </div>
+            <div>
+                <input type="text" placeholder="User Name" required data-ng-model="username" />
+            </div>
+            <div>
+                <input type="password" placeholder="Password" required data-ng-model="password" />
+            </div>
+            <div>
+                <input type="password" placeholder="Re-Enter Password" required data-ng-model="repassword" data-ng-blur="" />
+            </div>
+           <!--  <div>
+                <input type="email" placeholder="Email" required data-ng-model="email" />
+            </div> -->
+            <div>
+                <input type="text" placeholder="Mobile" required data-ng-model="mobile" />
+            </div>
+            <div>
+                <input type="submit" value="Register" /> <a href="#">Lost your
+					password?</a> <a href="#!Login">Sign In</a>
+            </div>
+        </form>
+        <!-- form -->
+    </section>
+    <!-- content -->
+</div>
