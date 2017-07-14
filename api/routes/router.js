@@ -14,7 +14,7 @@ router
 
 router
     .route('/suppliers')
-    .get(supplierController.getSuppliers)
+    .get(userController.authenticate,supplierController.getSuppliers)
     .post(supplierController.addSupplier)
     
 router
@@ -22,6 +22,5 @@ router
     .get(supplierController.getSupplier)
     .post(supplierController.updateSupplier)
     .delete(supplierController.deleteSupplier)
-
 
 module.exports = router;
