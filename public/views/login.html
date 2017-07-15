@@ -1,28 +1,33 @@
-<link rel="stylesheet" type="text/css" href="css/custom.css" >
+<link rel="stylesheet" type="text/css" href="css/custom.css">
 <body>
     <div class="container">
-    <section id="content">
-        <form action="perform_login" method="post">
-            <h1>Login Form</h1>
-            <div>
-                <input type="text" placeholder="Username" required id="username" name="username" pattern=".{5,10}" title="minimum length for username is 5"
-                />
+        <section id="content">
+            <div ng-if="vm.message" class="alert alert-success" role="alert">
+                <p>{{ vm.message }}</p>
             </div>
-            <div>
-                <input type="password" placeholder="Password" required id="password" name="password" title="Enter Valid credentials" />
+            <div ng-if="vm.error" class="alert alert-danger" role="alert">
+                <p>{{ vm.error }}</p>
             </div>
-            <div>
-                <input type="submit" value="Log in" /> <a href="#">Lost your
-						password?</a> <a href="Register">Register</a>
-            </div>
+            <form method="post" data-ng-submit="vm.login()">
+                <h1>Login Form</h1>
+                <div>
+                    <input type="text" placeholder="User Name" data-ng-model="vm.username" />
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" data-ng-model="vm.password" />
+                </div>
+                <div>
+                    <input type="submit" value="Log in" /> <a href="#">Lost your
+						password?</a> <a href="#!Registration">Register</a>
+                </div>
 
-        </form>
-        <!-- form -->
-        <div class="button">
-            <a href="#!Registration">Get New Account</a>
-        </div>
-        <!-- button -->
-    </section>
-    <!-- content -->
-</div>
+            </form>
+            <!-- form -->
+            <div class="button">
+                <a href="#!Registration">Get New Account</a>
+            </div>
+            <!-- button -->
+        </section>
+        <!-- content -->
+    </div>
 </body>

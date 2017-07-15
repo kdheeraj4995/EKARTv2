@@ -11,7 +11,7 @@ module.exports.register = function (req, res) {
     if (username == undefined || username == "" || password == undefined || password == "" || name == undefined || name == "") {
         res
             .status(400)
-            .json({ "message": "Name,Username and Password should not be empty" })
+            .json({success: false, message: "Name,Username and Password should not be empty" })
         return;
     }
 
@@ -24,12 +24,12 @@ module.exports.register = function (req, res) {
             if (err) {
                 res
                     .status(400)
-                    .json(err)
+                    .json({success: false, message: "Bad Request" })
             }
             else {
                 res
                     .status(201)
-                    .json(new_User)
+                    .json({success: true, message: "Registration Successfull" })
             }
         })
 }
@@ -43,7 +43,7 @@ module.exports.login = function (req, res) {
     if (username == undefined || username == "" || password == undefined || password == "") {
         res
             .status(400)
-            .json({ "message": "Username and Password should not be empty" })
+            .json({  success: false,message: "Username and Password should not be empty" })
         return;
     }
     user
@@ -54,22 +54,24 @@ module.exports.login = function (req, res) {
             if (err) {
                 res
                     .status(400)
-                    .json(err)
+                    .json({success: false, message: "Bad Request" })
             }
             else if (!user_requested) {
                 res
                     .status(500)
-                    .json({ "message": "Username does on exist on database" })
+                    .json({  success: false, message: "Username does on exist on database" })
             }
             else {
                 if (bcrypt.compareSync(password, user_requested.password)) {
                     var token = jwt.sign({ username: user_requested.username }, 's3cr3t', { expiresIn: 3600 });
-                    res.status(200).json({ success: true, token: token });
+                    res
+                        .status(200)
+                        .json({ success: true, token: token, message: "Login Successfull" });
                 }
                 else {
                     res
                         .status(401)
-                        .json({ "message": "Unauthorized - Incorrect Password" })
+                        .json({ success: false,message: "Unauthorized - Incorrect Password" })
                 }
             }
         })
@@ -84,13 +86,17 @@ module.exports.authenticate = function (req, res, next) {
         jwt.verify(token, 's3cr3t', function (error, decoded) {
             if (error) {
                 console.log(error);
-                res.status(401).json('Unauthorized');
+                res
+                    .status(401)
+                    .json({success: false,message:'Unauthorized'});
             } else {
                 req.user = decoded.username;
                 next();
             }
         });
     } else {
-        res.status(403).json('No token provided');
+        res
+            .status(403)
+            .json({success: false,message:"No token provided"});
     }
 };

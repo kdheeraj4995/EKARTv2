@@ -13,7 +13,7 @@ module.exports.getSuppliers = function (req, res) {
             else if (!Suppliers) {
                 res
                     .status(200)
-                    .json({ "message": "No Suppliers found" })
+                    .json({ message: "No Suppliers found" })
             }
             else {
                 res
@@ -36,7 +36,7 @@ module.exports.getSupplier = function (req, res) {
             else if (!Supplier) {
                 res
                     .status(404)
-                    .json({ "message": "Suppliers not found " })
+                    .json({ message: "Suppliers not found " })
             }
             else {
                 res
@@ -84,7 +84,7 @@ module.exports.deleteSupplier = function (req, res) {
             else if (!Supplier) {
                 res
                     .status(404)
-                    .json({ "message": "Suppliers not found " })
+                    .json({ message: "Suppliers not found " })
                 return;
             }
             else {

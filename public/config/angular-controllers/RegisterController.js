@@ -1,4 +1,4 @@
-app.controller('UserController', RegisterController);
+app.controller('RegisterController', RegisterController);
 
 function RegisterController($http) {
     var vm = this;
@@ -23,6 +23,7 @@ function RegisterController($http) {
                     vm.password = '';
                     vm.passwordRepeat = '';
                 }).catch(function (error) {
+                    vm.error = error.data.message;
                     console.log(error);
                 });
             }
