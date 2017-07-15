@@ -1,25 +1,32 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <div class="container">
+
     <section id="content">
-        <form method="post" data-ng-submit="submit()">
+        <div ng-if="vm.message" class="alert alert-success" role="alert">
+            <p>{{ vm.message }}</p>
+        </div>
+        <div ng-if="vm.error" class="alert alert-danger" role="alert">
+            <p>{{ vm.error }}</p>
+        </div>
+        <form method="post" data-ng-submit="vm.register()">
             <h1>Registration</h1>
             <div>
-                <input type="text" placeholder="Name" required data-ng-model="name" />
+                <input type="text" placeholder="Name" data-ng-model="vm.name" />
             </div>
             <div>
-                <input type="text" placeholder="User Name" required data-ng-model="username" />
+                <input type="text" placeholder="User Name" data-ng-model="vm.username" />
             </div>
             <div>
-                <input type="password" placeholder="Password" required data-ng-model="password" />
+                <input type="password" placeholder="Password" data-ng-model="vm.password" />
             </div>
             <div>
-                <input type="password" placeholder="Re-Enter Password" required data-ng-model="repassword" data-ng-blur="" />
+                <input type="password" placeholder="Re-Enter Password" data-ng-model="vm.passwordRepeat" data-ng-blur="" />
             </div>
-           <!--  <div>
+            <!--  <div>
                 <input type="email" placeholder="Email" required data-ng-model="email" />
             </div> -->
             <div>
-                <input type="text" placeholder="Mobile" required data-ng-model="mobile" />
+                <input type="text" placeholder="Mobile" data-ng-model="mobile" />
             </div>
             <div>
                 <input type="submit" value="Register" /> <a href="#">Lost your

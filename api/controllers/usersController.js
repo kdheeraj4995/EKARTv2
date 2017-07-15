@@ -8,6 +8,13 @@ module.exports.register = function (req, res) {
     var username = req.body.username;
     var name = req.body.name || null;
     var password = req.body.password;
+    if (username == undefined || username == "" || password == undefined || password == "" || name == undefined || name == "") {
+        res
+            .status(400)
+            .json({ "message": "Name,Username and Password should not be empty" })
+        return;
+    }
+
     user
         .create({
             name: name,
