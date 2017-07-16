@@ -14,7 +14,7 @@ router
 
 router
     .route('/suppliers')
-    .get(userController.authenticate,supplierController.getSuppliers)
+    .get(supplierController.getSuppliers)
     .post(supplierController.addSupplier)
     
 router

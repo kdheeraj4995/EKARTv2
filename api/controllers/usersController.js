@@ -14,7 +14,6 @@ module.exports.register = function (req, res) {
             .json({success: false, message: "Name,Username and Password should not be empty" })
         return;
     }
-
     user
         .create({
             name: name,
@@ -63,7 +62,7 @@ module.exports.login = function (req, res) {
             }
             else {
                 if (bcrypt.compareSync(password, user_requested.password)) {
-                    var token = jwt.sign({ username: user_requested.username }, 's3cr3t', { expiresIn: 3600 });
+                    var token = jwt.sign({ username: user_requested.username, role:user_requested.role }, 's3cr3t', { expiresIn: 3600 });
                     res
                         .status(200)
                         .json({ success: true, token: token, message: "Login Successfull" });
