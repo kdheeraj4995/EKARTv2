@@ -9,7 +9,7 @@ function RegisterController($http) {
             password: vm.password
         };
         if (!vm.username || !vm.password || !vm.name) {
-            vm.error = 'Name,Username and Password should not be empty';
+            vm.error = 'Username and Password should not be empty';
         } else {
             if (vm.password !== vm.passwordRepeat) {
                 vm.error = 'Please make sure the passwords match.';
@@ -29,5 +29,5 @@ function RegisterController($http) {
             }
         }
     }
-};
+}
 

@@ -3,26 +3,12 @@
 <head>
 	<title>EKARTv2.0</title>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="node_modules/w3-css/3/w3.css" rel="stylesheet"> 
 	<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<!-- <style>
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
 
-	.menu {
-		display: flex;
-		justify-content: space-around;
-	}
-
-	li {
-		hover: none;
-	}
-</style> -->
 <body style="margin-top: 85px">
 	<div class="w3-top">
 		<nav>
@@ -32,24 +18,24 @@
                         <i class="fa fa-home"></i> E K A R T
                     </a>
                 </li>
-				<li style="float: right">
+				<li style="float: right" data-ng-if="!loggedIn">
                     <a href="#!Registration" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
 						<span>Register</span>
                         <i class="fa fa-user-plus"></i>
                     </a>
                 </li>
-				<li style="float: right">
+				<li style="float: right" data-ng-if="!loggedIn">
 					<a href="#!Login" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
                         <span>Login </span>
                         <i class="fa fa-sign-in"></i>
 					</a>
 				</li>
-			<!-- 	<li style="float: right">
+			 	<li style="float: right" data-ng-if="loggedIn">
 					<a href="#!logout" class="w3-hover-none w3-text-sand w3-hover-text-white">
                         <span>Logout </span>
                         <i class="fa fa-sign-out"></i>
 					</a>
-				</li> -->
+				</li> 
 			</ul>
 		</nav>
 	</div>
@@ -62,9 +48,13 @@
 	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>	
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
 	
 	<script type="text/javascript" src="config/App.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/RegisterController.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/LoginController.js"></script>
+
+	<script type="text/javascript" src="config/auth/auth.js"></script>
+	<script type="text/javascript" src="config/auth/auth-interceptor.js"></script>
 </body>
 </html>

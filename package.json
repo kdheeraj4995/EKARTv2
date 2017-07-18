@@ -19,6 +19,7 @@
   "homepage": "https://github.com/kdheeraj4995/EKARTv2#readme",
   "dependencies": {
     "angular": "^1.6.5",
+    "angular-jwt": "^0.1.9",
     "angular-route": "^1.6.5",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
