@@ -3,6 +3,7 @@ var user = mongoose.model('UserModel');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
+
 module.exports.register = function (req, res) {
     console.log('User Registration in Progress');
     var username = req.body.username;
@@ -11,7 +12,7 @@ module.exports.register = function (req, res) {
     if (username == undefined || username == "" || password == undefined || password == "" || name == undefined || name == "") {
         res
             .status(400)
-            .json({success: false, message: "Name,Username and Password should not be empty" })
+            .json({ success: false, message: "Name,Username and Password should not be empty" })
         return;
     }
     user
@@ -23,12 +24,12 @@ module.exports.register = function (req, res) {
             if (err) {
                 res
                     .status(400)
-                    .json({success: false, message: "Bad Request" })
+                    .json({ success: false, message: "Bad Request" })
             }
             else {
                 res
                     .status(201)
-                    .json({success: true, message: "Registration Successfull" })
+                    .json({ success: true, message: "Registration Successfull" })
             }
         })
 }
@@ -42,7 +43,7 @@ module.exports.login = function (req, res) {
     if (username == undefined || username == "" || password == undefined || password == "") {
         res
             .status(400)
-            .json({  success: false,message: "Username and Password should not be empty" })
+            .json({ success: false, message: "Username and Password should not be empty" })
         return;
     }
     user
@@ -53,16 +54,16 @@ module.exports.login = function (req, res) {
             if (err) {
                 res
                     .status(400)
-                    .json({success: false, message: "Bad Request" })
+                    .json({ success: false, message: "Bad Request" })
             }
             else if (!user_requested) {
                 res
                     .status(500)
-                    .json({  success: false, message: "Username does on exist on database" })
+                    .json({ success: false, message: "Username does on exist on database" })
             }
             else {
                 if (bcrypt.compareSync(password, user_requested.password)) {
-                    var token = jwt.sign({ username: user_requested.username, role:user_requested.role }, 's3cr3t', { expiresIn: 3600 });
+                    var token = jwt.sign({ username: user_requested.username, role: user_requested.role }, 's3cr3t', { expiresIn: 3600 });
                     res
                         .status(200)
                         .json({ success: true, token: token, message: "Login Successfull" });
@@ -70,7 +71,7 @@ module.exports.login = function (req, res) {
                 else {
                     res
                         .status(401)
-                        .json({ success: false,message: "Unauthorized - Incorrect Password" })
+                        .json({ success: false, message: "Unauthorized - Incorrect Password" })
                 }
             }
         })
@@ -87,7 +88,7 @@ module.exports.authenticate = function (req, res, next) {
                 console.log(error);
                 res
                     .status(401)
-                    .json({success: false,message:'Unauthorized'});
+                    .json({ success: false, message: 'Unauthorized' });
             } else {
                 req.user = decoded.username;
                 next();
@@ -96,6 +97,6 @@ module.exports.authenticate = function (req, res, next) {
     } else {
         res
             .status(403)
-            .json({success: false,message:"No token provided"});
+            .json({ success: false, message: "No token provided" });
     }
 };

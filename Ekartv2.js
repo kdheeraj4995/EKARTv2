@@ -4,6 +4,9 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var router = require('./api/routes/router');
+var favicon = require('serve-favicon');
+
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // Setting Port 
 app.set('port', 3000);
