@@ -1,6 +1,6 @@
 app.controller('LoginController', LoginController);
 
-function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
+function LoginController($http, $location, $window, jwtHelper,$route) {
     var vm = this;
     vm.login = function () {
         var user = {
@@ -13,7 +13,6 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
         $http.post('/api/users/login', user).then(function (response) {
             if (response.data.success) {
                 $window.sessionStorage.token = response.data.token;
-                AuthFactory.isLoggedIn = true;
                 var token = $window.sessionStorage.token;
                 var decodedToken = jwtHelper.decodeToken(token);
                 $window.sessionStorage.role = decodedToken.role;
@@ -26,5 +25,10 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
         }).catch(function (error) {
             vm.error = error.data.message;
         })
+    }
+    vm.logout = function(){
+        delete $window.sessionStorage.token ;
+        delete $window.sessionStorage.role; 
+        $route.reload();
     }
 }

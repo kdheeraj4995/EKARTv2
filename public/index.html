@@ -19,7 +19,7 @@
                     </a>
                 </li>
 				<li style="float: right" data-ng-if="!loggedIn">
-                    <a href="#!Registration" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+                    <a href="#!Register" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
 						<span>Register</span>
                         <i class="fa fa-user-plus"></i>
                     </a>
@@ -31,7 +31,7 @@
 					</a>
 				</li>
 			 	<li style="float: right" data-ng-if="loggedIn">
-					<a href="#!logout" class="w3-hover-none w3-text-sand w3-hover-text-white">
+					<a href =""  ng-controller="LoginController as vm"  ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
                         <span>Logout </span>
                         <i class="fa fa-sign-out"></i>
 					</a>
@@ -54,7 +54,6 @@
 	<script type="text/javascript" src="config/angular-controllers/RegisterController.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/LoginController.js"></script>
 
-	<script type="text/javascript" src="config/auth/auth.js"></script>
 	<script type="text/javascript" src="config/auth/auth-interceptor.js"></script>
 </body>
 </html>
