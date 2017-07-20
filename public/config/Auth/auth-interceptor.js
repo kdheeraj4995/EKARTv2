@@ -1,10 +1,10 @@
-app.factory('AuthInterceptor', AuthInterceptor);
+/* app.factory('AuthInterceptor', AuthInterceptor);
 
 function AuthInterceptor($location, $q, $window) {
   return {
     request: request/* ,
     response: response,
-    responseError: responseError */
+    responseError: responseError 
   };
 
   function request(config) {
@@ -25,3 +25,4 @@ function AuthInterceptor($location, $q, $window) {
     return $q.reject(rejection);
   } 
 }
+ */

@@ -1,6 +1,6 @@
 app.controller('LoginController', LoginController);
 
-function LoginController($http, $location, $window, jwtHelper,$route) {
+function LoginController($http, $location, $window, jwtHelper, $route) {
     var vm = this;
     vm.login = function () {
         var user = {
@@ -20,15 +20,18 @@ function LoginController($http, $location, $window, jwtHelper,$route) {
             }
             else {
                 vm.error = response.data.message;
-                vm.password=''
+                vm.password = '';
             }
         }).catch(function (error) {
             vm.error = error.data.message;
+            vm.password = '';
         })
     }
-    vm.logout = function(){
-        delete $window.sessionStorage.token ;
-        delete $window.sessionStorage.role; 
+    vm.logout = function () {
+        delete $window.sessionStorage.token;
+        delete $window.sessionStorage.role;
+        $location.path('/');
         $route.reload();
     }
+    /*  */
 }

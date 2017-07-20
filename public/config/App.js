@@ -1,6 +1,6 @@
 var app = angular.module("myApp", ["ngRoute", "angular-jwt"]);
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider','$locationProvider', function ($routeProvider,$locationProvider) {
 	$routeProvider
 		.when('/Login', {
 			templateUrl: 'views/login.html',
@@ -33,21 +33,28 @@ app.config(['$routeProvider', function ($routeProvider) {
 				restricted: false
 			}
 		});
+		$locationProvider.html5Mode(true);
 }]);
+
 
 app.run(run);
 function run($rootScope, $location, $window) {
 	$rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
 		$rootScope.loggedIn = ($window.sessionStorage.token) ? true : false;
-		var Basic = ['/Login','/Register'];
+		$rootScope.access = $window.sessionStorage.role;
+		var Basic = ['/Login', '/Register'];
 		if (($rootScope.loggedIn) && (Basic.indexOf($location.path()) !== -1)) {
 			$location.path('/');
 		}
-		else {
-			$rootScope.access = $window.sessionStorage.user;
+		else 
+		{
 			if (nextRoute.access !== undefined && nextRoute.access.restricted) {
+				console.log($rootScope.access);
+				console.log(nextRoute.access.role);
 				if ($rootScope.loggedIn) {
 					if ($rootScope.access !== nextRoute.access.role) {
+						console.log($rootScope.access);
+						console.log(nextRoute.access.role);
 						$location.path('/Forbidden');
 					}
 				}
