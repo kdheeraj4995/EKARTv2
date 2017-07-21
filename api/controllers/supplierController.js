@@ -107,4 +107,5 @@ module.exports.deleteSupplier = function (req, res) {
 
 module.exports.updateSupplier = function (req, res) {
 
+    
 }

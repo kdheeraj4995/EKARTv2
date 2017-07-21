@@ -33,5 +33,8 @@ function LoginController($http, $location, $window, jwtHelper, $route) {
         $location.path('/');
         $route.reload();
     }
-    /*  */
+
+    vm.homepage = function () {
+        $location.path('/');
+    }
 }

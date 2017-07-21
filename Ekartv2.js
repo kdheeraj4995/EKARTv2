@@ -28,6 +28,11 @@ app.use(bodyParser.json());
 // Api Routes
 app.use('/api', router);
 
+// Server URL Rewriting to remove hashbang #! url (HTML5 will be enabled on angular js)
+app.use(function(req, res) {
+res.sendFile(path.join(__dirname, 'public','index.html'));
+});
+
 // ServerConfig - Start : Running Server on Port 3000 
 var server = app.listen(app.get('port'), function() {
 var port = server.address().port;

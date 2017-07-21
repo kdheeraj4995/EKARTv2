@@ -49,12 +49,8 @@ function run($rootScope, $location, $window) {
 		else 
 		{
 			if (nextRoute.access !== undefined && nextRoute.access.restricted) {
-				console.log($rootScope.access);
-				console.log(nextRoute.access.role);
 				if ($rootScope.loggedIn) {
 					if ($rootScope.access !== nextRoute.access.role) {
-						console.log($rootScope.access);
-						console.log(nextRoute.access.role);
 						$location.path('/Forbidden');
 					}
 				}
