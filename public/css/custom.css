@@ -1,10 +1,10 @@
 body {
 	background: #DCDDDF url(http://cssdeck.com/uploads/media/items/7/7AF2Qzt.png);
 	color: #000;
-	font: 14px Arial;
+/* font: 15px Arial;*/
 	margin: 0 auto;
 	padding: 0;
-	position: relative;
+	position: relative; 
 }
 h1{ font-size:28px;}
 h2{ font-size:26px;}
@@ -29,7 +29,7 @@ form:after {
 	clear: both;
 	visibility: hidden;
 }
-.container { margin: 25px auto; position: relative; width: 900px; }
+/* .container { margin: 25px auto; position: relative; width: 900px; } */
 #content {
 	background: #f9f9f9;
 	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);

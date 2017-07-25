@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <html data-ng-app="myApp">
+
 <head>
 	<title>EKARTv2.0</title>
 	<meta charset="UTF-8">
 	<base href="/Ekartv2">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="node_modules/w3-css/3/w3.css" rel="stylesheet"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="node_modules/w3-css/3/w3.css" rel="stylesheet">
 	<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body style="margin-top: 85px">
-	<div class="w3-top">
+<body> <!-- style="display: flex; justify-content: center" -->
+	<div class="w3-top" >
 		<nav>
-			<ul class="w3-navbar w3-black w3-card-2 w3-large " style="opacity: 0.9">
+			<ul class="w3-navbar w3-black w3-card-2 w3-large" style="opacity: 0.9">
 				<li>
-                    <a href =""  ng-controller="LoginController as vm"  ng-click="vm.homepage()" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+					<a href="" ng-controller="LoginController as vm" ng-click="vm.homepage()" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
                         <i class="fa fa-home"></i> E K A R T
                     </a>
-                </li>
+				</li>
 				<li style="float: right" data-ng-if="!loggedIn">
-                    <a href="Register" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+					<a href="Register" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
 						<span>Register</span>
                         <i class="fa fa-user-plus"></i>
                     </a>
-                </li>
+				</li>
 				<li style="float: right" data-ng-if="!loggedIn">
 					<a href="Login" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
                         <span>Login</span>
                         <i class="fa fa-sign-in"></i>
 					</a>
-				</li> 
-			 	<li style="float: right" data-ng-if="loggedIn">
-					<a href ="" ng-controller="LoginController as vm"  ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
+				</li>
+				<li style="float: right" data-ng-if="loggedIn">
+					<a href="" ng-controller="LoginController as vm" ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
                         <span>Logout</span>
                         <i class="fa fa-sign-out"></i>
 					</a>
 				</li>
 				<li style="float: right" data-ng-if="loggedIn">
-					<a href ="Admin"  class="w3-hover-none w3-text-sand w3-hover-text-white">
+					<a href="Admin" class="w3-hover-none w3-text-sand w3-hover-text-white">
                         <span>Admin</span>
                         <i class="fa fa-cog fa-spin  fa-fw"></i>
 					</a>
-				</li> 
+				</li>
 			</ul>
 		</nav>
 	</div>
 
-    <div data-ng-view ></div>
+	<div data-ng-view>
+
+	</div>
 
 
-	
-    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+
+	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
 	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
-	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>	
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
-	
+
 	<script type="text/javascript" src="config/App.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/RegisterController.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/LoginController.js"></script>
 
 	<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
 </body>
+
 </html>
