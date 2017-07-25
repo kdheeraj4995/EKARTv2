@@ -9,7 +9,7 @@ module.exports.register = function (req, res) {
     var username = req.body.username;
     var name = req.body.name || null;
     var password = req.body.password;
-    var role = req.body.role.toString();
+    /* var role = req.body.role.toString(); */
     if (username == undefined || username == "") {
         res
             .status(400)
@@ -32,8 +32,8 @@ module.exports.register = function (req, res) {
         .create({
             name: name,
             username: username,
-            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
-            role: role
+            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+            /* role: role */
         }, function (err, new_User) {
             if (err) {
                 console.log(err);
@@ -41,6 +41,7 @@ module.exports.register = function (req, res) {
                     .status(400)
                     .json({ success: false, message: "Bad Request" })
             }
+                
             else {
                 res
                     .status(201)
@@ -109,7 +110,7 @@ module.exports.authenticate = function (req, res, next) {
                 console.log(error);
                 res
                     .status(401)
-                    .json({ success: false, message: 'Unauthorized' });
+                    .json({ success: false, message: 'Unauthorized'});
             } else {
                 req.user = decoded.username;
                 req.role = decoded.role;
