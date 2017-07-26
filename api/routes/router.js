@@ -3,6 +3,7 @@ var router = express.Router();
 var userController = require('../controllers/usersController');
 var supplierController = require('../controllers/supplierController');
 var categoryController = require('../controllers/categoryController');
+var productController = require('../controllers/productController');
 var access = require('../controllers/access');
 
 router
@@ -38,4 +39,10 @@ router
     .put([userController.authenticate,access.Max],categoryController.updateCategory)
     .delete([userController.authenticate,access.Max],categoryController.deleteCategory)
 
+router
+    .route('/product')
+    .get(productController.getProducts)
+    .post(productController.addProduct)
+
+    
 module.exports = router;
