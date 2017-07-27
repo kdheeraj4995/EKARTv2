@@ -55,7 +55,7 @@ module.exports.getCategory = function (req, res) {
 module.exports.addCategory = function (req, res) {
     category
         .create({
-            name: req.body.name,
+            name: req.body.name.toLowerCase(),
             description: req.body.description
         }, function (err, new_Category) {
             if (err) {
@@ -132,7 +132,7 @@ module.exports.updateCategory = function (req, res) {
                     .json({ success: false, message: "Category not found " })
             }
             else {
-                categoryname = req.body.name;
+                categoryname = req.body.name.toLowerCase();
                 categorydesc = req.body.description;
                 if (categoryname == undefined || categoryname == "") {
                     res

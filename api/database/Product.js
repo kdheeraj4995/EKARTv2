@@ -2,21 +2,29 @@ var mongoose = require('mongoose');
 var productSchema = new mongoose.Schema({
     name: {
         type: String,
-        unique: true,
         required: true
     },
-    description : {
+    description: {
         type: String,
-        required: true 
+        required: true
     },
-    price : {
-        type : Number,
-        required : true
+    price: {
+        type: Number,
+        required: true
     },
-    category : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref: 'CategoryModel'
+    quantity: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CategoryModel',
+        required:true
+    },
+    seller: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserModel'
     }
 })
 
-mongoose.model('ProductModel',productSchema);
+mongoose.model('ProductModel', productSchema);

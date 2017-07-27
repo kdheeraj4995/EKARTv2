@@ -31,18 +31,18 @@ router
 router
     .route('/category')
     .get(categoryController.getCategories)
-    .post([userController.authenticate,access.Max],categoryController.addCategory)
+    .post([access.authenticate,access.Max],categoryController.addCategory)
     
 router
     .route('/category/:categoryId')
-    .get([userController.authenticate,access.Max],categoryController.getCategory)
-    .put([userController.authenticate,access.Max],categoryController.updateCategory)
-    .delete([userController.authenticate,access.Max],categoryController.deleteCategory)
+    .get([access.authenticate,access.Max],categoryController.getCategory)
+    .put([access.authenticate,access.Max],categoryController.updateCategory)
+    .delete([access.authenticate,access.Max],categoryController.deleteCategory)
 
 router
     .route('/product')
     .get(productController.getProducts)
-    .post(productController.addProduct)
+    .post([access.authenticate,access.Med],productController.addProduct)
 
     
 module.exports = router;
