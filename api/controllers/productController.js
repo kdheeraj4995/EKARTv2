@@ -259,3 +259,55 @@ module.exports.getProduct = function (req, res) {
             }
         })
 }
+
+module.exports.getProductsByCategory = function (req, res) {
+    var categoryname = req.params.categoryname;
+    if (categoryname == undefined || categoryname == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "category name should not be empty" })
+        return;
+    }
+    category
+        .findOne({
+            "name": categoryname
+        }, {
+            name: true
+        }, function (err, obj) {
+            if (err) {
+                res
+                    .status(500)
+                    .json({ success: false, message: err.message })
+                return;
+            }
+            else if (!obj) {
+                res
+                    .status(200)
+                    .json({ success: false, message: "Category not found" })
+                return;
+            }
+            else {
+                product
+                    .find({
+                        category: obj._id
+                    }, function (err, productsfetched) {
+                        if (err) {
+                            res
+                                .status(500)
+                                .json({ success: false, message: err.message })
+                        }
+                        else if (!productsfetched) {
+                            res
+                                .status(200)
+                                .json({ success: false, message: "Products not found" })
+                            return;
+                        }
+                        else {
+                            res
+                                .status(200)
+                                .json(productsfetched)
+                        }
+                    })
+            }
+        })
+}

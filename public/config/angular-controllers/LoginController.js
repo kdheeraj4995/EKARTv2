@@ -17,8 +17,7 @@ function LoginController($http, $location, $window, jwtHelper, $route) {
             $http.post('/api/users/login', user).then(function (response) {
                 if (response.data.success) {
                     $window.sessionStorage.token = response.data.token;
-                    var token = $window.sessionStorage.token;
-                    var decodedToken = jwtHelper.decodeToken(token);
+                    var decodedToken = jwtHelper.decodeToken(response.data.token);
                     $window.sessionStorage.role = decodedToken.role;
                     $location.path('/');
                 }

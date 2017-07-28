@@ -48,5 +48,9 @@ router
     .route('/product/:productid')
     .get(productController.getProduct)
     .delete([access.authenticate,access.Med],productController.deleteProduct)
+
+router
+    .route('/product/category/:categoryname')
+    .get(productController.getProductsByCategory)
     
 module.exports = router;

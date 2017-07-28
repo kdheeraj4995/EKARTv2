@@ -32,7 +32,7 @@ module.exports.register = function (req, res) {
             name: name,
             username: username,
             password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
-            role :"User"
+            role: "User"
         }, function (err, new_User) {
             if (err) {
                 console.log(err);
@@ -40,7 +40,7 @@ module.exports.register = function (req, res) {
                     .status(400)
                     .json({ success: false, message: "Bad Request" })
             }
-                
+
             else {
                 res
                     .status(201)
@@ -97,32 +97,39 @@ module.exports.login = function (req, res) {
 }
 
 module.exports.updateRole = function (req, res) {
-    /*  var username = req.body.username;
-     var role = req.body.role.toString();
-      if (username == undefined || username == "" || role == undefined || role == "") {
-         res
-             .status(400)
-             .json({ success: false, message: "username and role should not be empty" })
-         return;
-     }
-     user
-         .findOne({
-             username:username
-         },{
-             $push:{'role': role}
-         },function(err,updateCount){
-             if(err){
-                 res
-                     .status(500)
-                     .send(err)
-                 console.log(err);
-             }
-             else{
-                 console.log(updateCount)
-                 res
-                     .status(200)
-                     .send(updateCount)
-                
-             }
-         }) */
+    var username = req.body.username;
+    var role = req.body.role.toString();
+    if (username == undefined || username == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "username should not be empty" })
+        return;
+    }
+    else if (role == undefined || role == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Role should not be empty" })
+        return;
+    }
+    else {
+        user
+            .findOne({
+                username: username
+            }, {
+                $push: { 'role': role }
+            }, function (err, updateCount) {
+                if (err) {
+                    res
+                        .status(500)
+                        .send(err)
+                    console.log(err);
+                }
+                else {
+                    console.log(updateCount)
+                    res
+                        .status(200)
+                        .send(updateCount)
+                }
+            })
+    }
 }
