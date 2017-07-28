@@ -7,8 +7,11 @@ var user = mongoose.model('UserModel');
 module.exports.getProducts = function (req, res) {
     product
         .find()
-        .populate('category', 'name _id')
-        .populate('seller', 'name _id')
+        .select({
+            __v: false
+        })
+        .populate('category', 'name')
+        .populate('seller', 'name')
         .exec(function (err, Products) {
             if (err) {
                 res
@@ -90,6 +93,8 @@ module.exports.addProduct = function (req, res) {
         category
             .findOne({
                 "name": categoryname
+            }, {
+                name: true
             }, function (err, obj) {
                 if (err) {
                     res
@@ -99,7 +104,7 @@ module.exports.addProduct = function (req, res) {
                 }
                 else if (!obj) {
                     res
-                        .status(404)
+                        .status(200)
                         .json({ success: false, message: "Category not found" })
                     return;
                 }
@@ -113,7 +118,7 @@ module.exports.addProduct = function (req, res) {
                             }
                             else if (!supp) {
                                 res
-                                    .status(404)
+                                    .status(200)
                                     .json({ success: false, message: "Invalid Supplier" })
                             }
                             else {
@@ -172,3 +177,85 @@ module.exports.addProduct = function (req, res) {
     }
 }
 
+module.exports.deleteProduct = function (req, res) {
+    var productid = req.params.productid;
+    if (productid == undefined || productid == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Product Id should not be empty" })
+        return;
+    }
+    product
+        .findById(productid)
+        .select({
+            _id: true,
+            seller: true
+        })
+        .exec(function (err, Product) {
+            if (err) {
+                res
+                    .status(500)
+                    .json({ success: false, message: err.message })
+            }
+            else if (!Product) {
+                res
+                    .status(200)
+                    .json({ success: false, message: "Product not found " })
+            }
+            else if (!req.isAdmin) {
+                if (Product.seller != req.userid) {
+                    res
+                        .status(403)
+                        .json({ success: false, message: "Forbidden resource for current user" })
+                }
+            }
+            else {
+                Product
+                    .remove(function (err, data) {
+                        if (err) {
+                            res
+                                .status(500)
+                                .json({ success: false, message: err.message })
+                        } else {
+                            res
+                                .status(204)
+                                .json(data)
+                        }
+                    })
+            }
+        })
+}
+
+module.exports.getProduct = function (req, res) {
+    var productid = req.params.productid;
+    if (productid == undefined || productid == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Product Id should not be empty" })
+        return;
+    }
+    product
+        .findById(productid)
+        .select({
+            __v: false
+        })
+        .populate('category', 'name')
+        .populate('seller', 'name')
+        .exec(function (err, Product) {
+            if (err) {
+                res
+                    .status(500)
+                    .json({ success: false, message: err.message })
+            }
+            else if (!Product) {
+                res
+                    .status(200)
+                    .json({ success: false, message: "Product not found " })
+            }
+            else {
+                res
+                    .status(201)
+                    .json(Product)
+            }
+        })
+}

@@ -44,5 +44,9 @@ router
     .get(productController.getProducts)
     .post([access.authenticate,access.Med],productController.addProduct)
 
+router
+    .route('/product/:productid')
+    .get(productController.getProduct)
+    .delete([access.authenticate,access.Med],productController.deleteProduct)
     
 module.exports = router;

@@ -9,7 +9,6 @@ module.exports.register = function (req, res) {
     var username = req.body.username;
     var name = req.body.name || null;
     var password = req.body.password;
-    /* var role = req.body.role.toString(); */
     if (username == undefined || username == "") {
         res
             .status(400)
@@ -32,8 +31,8 @@ module.exports.register = function (req, res) {
         .create({
             name: name,
             username: username,
-            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-            /* role: role */
+            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+            role :"User"
         }, function (err, new_User) {
             if (err) {
                 console.log(err);
@@ -49,8 +48,6 @@ module.exports.register = function (req, res) {
             }
         })
 }
-
-
 
 module.exports.login = function (req, res) {
     console.log('User Login in Progress');
@@ -98,10 +95,6 @@ module.exports.login = function (req, res) {
             }
         })
 }
-
-
-
-
 
 module.exports.updateRole = function (req, res) {
     /*  var username = req.body.username;

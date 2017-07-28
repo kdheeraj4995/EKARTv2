@@ -92,7 +92,6 @@ var authenticate = function (req, res, next) {
                                 .json({ success: false, message: "Username does on exist on database" })
                         }
                         else {
-                            // console.log(user_requested);
                             req.user = decoded.username;
                             req.role = user_requested.role;
                             req.userid = user_requested._id;
@@ -104,7 +103,6 @@ var authenticate = function (req, res, next) {
                     })
             }
         });
-
     } else {
         res
             .status(403)

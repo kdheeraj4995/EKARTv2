@@ -15,7 +15,6 @@ function RegisterController($http) {
                 vm.error = 'Please make sure the passwords match.';
             } else {
                 $http.post('/api/users/register', user).then(function (result) {
-                    console.log(result);
                     vm.message = 'Successful registration, please login.';
                     vm.error = '';
                     vm.name = '';
