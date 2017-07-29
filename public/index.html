@@ -11,12 +11,12 @@
 	<link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body> <!-- style="display: flex; justify-content: center" -->
+<body>
 	<div class="w3-top" >
 		<nav>
 			<ul class="w3-navbar w3-black w3-card-2 w3-large" style="opacity: 0.9">
 				<li>
-					<a href="" ng-controller="LoginController as vm" ng-click="vm.homepage()" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
+					<a href="" ng-controller="userController as vm" ng-click="vm.homepage()" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
                         <i class="fa fa-home"></i> E K A R T
                     </a>
 				</li>
@@ -33,7 +33,7 @@
 					</a>
 				</li>
 				<li style="float: right" data-ng-if="loggedIn">
-					<a href="" ng-controller="LoginController as vm" ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
+					<a href="" ng-controller="userController as vm" ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
                         <span>Logout</span>
                         <i class="fa fa-sign-out"></i>
 					</a>
@@ -61,10 +61,10 @@
 	<script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
 
 	<script type="text/javascript" src="config/App.js"></script>
-	<script type="text/javascript" src="config/angular-controllers/RegisterController.js"></script>
-	<script type="text/javascript" src="config/angular-controllers/LoginController.js"></script>
+	<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
 
 	<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
+	<script type="text/javascript" src="config/CustomServices/userService.js"></script>
 </body>
 
 </html>

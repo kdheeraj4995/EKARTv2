@@ -29,6 +29,7 @@ router
     .get([userController.authenticate,access.Med],supplierController.getSupplier)
     .post([userController.authenticate,access.Med],supplierController.updateSupplier)
     .delete([userController.authenticate,access.Max],supplierController.deleteSupplier) */
+    
 router
     .route('/category')
     .get(categoryController.getCategories)

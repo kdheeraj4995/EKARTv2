@@ -4,14 +4,14 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 	$routeProvider
 		.when('/Login', {
 			templateUrl: 'views/login.html',
-			controller: 'LoginController',
+			controller: 'userController',
 			controllerAs: 'vm',
 			access: {
 				restricted: false
 			}
 		}).when('/Register', {
 			templateUrl: 'views/registration.html',
-			controller: 'RegisterController',
+			controller: 'userController',
 			controllerAs: 'vm',
 			access: {
 				restricted: false
