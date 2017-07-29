@@ -160,5 +160,64 @@ module.exports.addRole = function (req, res) {
 }
 
 module.exports.deleteRole = function(req,res){
-    
+    var username = req.body.username;
+    var role = req.body.role;
+    if (username == undefined || username == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "username should not be empty" })
+        return;
+    }
+    else if (role == undefined || role == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Role should not be empty" })
+        return;
+    }
+    else if (['Admin', 'Supplier', 'User'].indexOf(role) == -1) {
+        res
+            .status(400)
+            .json({ success: false, message: "Invalid Role" })
+        return;
+    }
+    else {
+        user
+            .findOne({
+                username: username
+            }, function (err, User) {
+                if (err) {
+                    res
+                        .status(500)
+                        .json({ success: false, message: err.message })
+                }
+                else if (!User) {
+                    res
+                        .status(404)
+                        .json({ success: false, message: "User not found" })
+                }
+                else if (User.role.indexOf(role) != -1) {
+                    User.role.splice(User.role.indexOf(role),1);
+                    User
+                        .save(function (err, updated_USer) {
+                            if (err) {
+                                res
+                                    .status(500)
+                                    .json({ success: false, message: err.message })
+                                console.log(err);
+                            }
+                            else {
+                                res
+                                    .status(201)
+                                    .json(updated_USer)
+                            }
+                        })
+                }
+                else {
+                    res
+                        .status(200)
+                        .json({ success: false, message: "User does not have the required access" })
+                    return
+                }
+            })
+    }
 }

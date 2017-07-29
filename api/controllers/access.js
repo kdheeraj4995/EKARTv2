@@ -108,7 +108,7 @@ var authenticate = function (req, res, next) {
             .status(403)
             .json({ success: false, message: "No token provided" });
     }
-};
+}
 
 module.exports = {
     Max: Max,

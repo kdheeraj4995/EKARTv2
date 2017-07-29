@@ -16,8 +16,8 @@ router
 
 router
     .route('/users/update/role')
-    .put(userController.addRole)
-    .delete(userController.deleteRole)
+    .put([access.authenticate,access.Max],userController.addRole)
+    .delete([access.authenticate,access.Max],userController.deleteRole)
 
 /* router
     .route('/suppliers')
