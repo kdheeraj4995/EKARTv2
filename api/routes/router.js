@@ -16,7 +16,8 @@ router
 
 router
     .route('/users/update/role')
-    .put(userController.updateRole)
+    .put(userController.addRole)
+    .delete(userController.deleteRole)
 
 /* router
     .route('/suppliers')
