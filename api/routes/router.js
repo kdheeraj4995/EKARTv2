@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var userController = require('../controllers/usersController');
-var supplierController = require('../controllers/supplierController');
 var categoryController = require('../controllers/categoryController');
 var productController = require('../controllers/productController');
 var access = require('../controllers/access');
@@ -18,17 +17,6 @@ router
     .route('/users/update/role')
     .put([access.authenticate,access.Max],userController.addRole)
     .delete([access.authenticate,access.Max],userController.deleteRole)
-
-/* router
-    .route('/suppliers')
-    .get([userController.authenticate,access.Max],supplierController.getSuppliers)
-    .post([userController.authenticate,access.Max],supplierController.addSupplier)
-    
-router
-    .route('/suppliers/:supplierId')
-    .get([userController.authenticate,access.Med],supplierController.getSupplier)
-    .post([userController.authenticate,access.Med],supplierController.updateSupplier)
-    .delete([userController.authenticate,access.Max],supplierController.deleteSupplier) */
     
 router
     .route('/category')

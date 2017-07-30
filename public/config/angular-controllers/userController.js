@@ -75,4 +75,4 @@ function userController(userService, $location, $window, jwtHelper, $route) {
     vm.homepage = function () {
         $location.path('/');
     }
-
+}

@@ -16,6 +16,11 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 			access: {
 				restricted: false
 			}
+		}).when('/product/:category', {
+			templateUrl: 'views/products.html',
+			access: {
+				restricted: false
+			}
 		}).when('/Admin', {
 			templateUrl: 'views/admin.html',
 			access: {
@@ -60,7 +65,6 @@ function run($rootScope, $location, $window) {
 				}
 			}
 		}
-
 	});
 }
 

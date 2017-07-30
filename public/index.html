@@ -9,10 +9,11 @@
 	<link href="node_modules/w3-css/3/w3.css" rel="stylesheet">
 	<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
-	<div class="w3-top" >
+	<div class="w3-top">
 		<nav>
 			<ul class="w3-navbar w3-black w3-card-2 w3-large" style="opacity: 0.9">
 				<li>
@@ -45,6 +46,14 @@
 					</a>
 				</li>
 			</ul>
+			<ul ng-controller="categoryController" class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 " Style="width: 70%; margin-left: 15%; margin-top: -2px">
+				<li ng-repeat="category in categories">
+					<a href="product/{{category.name}}" class="w3-hover-none w3-text-black w3-hover-text-red">
+						<i class="fa fa-list-alt" aria-hidden="true"></i> 
+						<span> {{category.name | camelCase}}</span>
+					</a>
+				</li>
+			</ul>
 		</nav>
 	</div>
 
@@ -62,9 +71,13 @@
 
 	<script type="text/javascript" src="config/App.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
+	<script type="text/javascript" src="config/angular-controllers/categoryController.js"></script>
 
 	<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
 	<script type="text/javascript" src="config/CustomServices/userService.js"></script>
+	<script type="text/javascript" src="config/CustomServices/categoryService.js"></script>
+
+	<script type="text/javascript" src="config/CustomFilters/customFilter.js"></script>
 </body>
 
 </html>
