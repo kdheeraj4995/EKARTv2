@@ -1,8 +1,15 @@
 <link rel="stylesheet" type="text/css" href="css/products.css">
 <div class="container" style="margin-top:100px">
-    <div class="col-xs-3 w3-animate-zoom" ng-repeat="product in products">
+    <div ng-if="error" class="alert alert-danger" role="alert">
+        <p>{{message}}</p>
+    </div>
+    <div ng-if="success" class="alert alert-success" role="alert">
+        <p>{{message}}</p>
+    </div>
+    <div ng-if"!error">
+        <div class="col-xs-3 w3-animate-zoom" ng-repeat="product in products">
         <div class="img">
-            <a href="#LinktoNewPageToViewIndividualProduct"> 
+            <a href="/product/{{product._id}}"> 
                 <img height="192px" width="192px" alt="{{product.name}}" src="#ImageLink">
 			</a>
             <div class="desc">
@@ -18,4 +25,6 @@
             </div>
         </div>
     </div>
+    </div>
+    
 </div>

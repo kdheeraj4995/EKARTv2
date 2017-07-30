@@ -145,7 +145,7 @@ module.exports.addRole = function (req, res) {
                             else {
                                 res
                                     .status(201)
-                                    .json(updated_USer)
+                                    .json({success:true,message:"Role Added"})
                             }
                         })
                 }
@@ -208,7 +208,7 @@ module.exports.deleteRole = function(req,res){
                             else {
                                 res
                                     .status(201)
-                                    .json(updated_USer)
+                                    .json({success:true,message:"Role Deleted"})
                             }
                         })
                 }

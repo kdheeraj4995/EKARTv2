@@ -26,7 +26,7 @@ module.exports.getProducts = function (req, res) {
             else {
                 res
                     .status(201)
-                    .json(Products)
+                    .json({success:true,products:Products})
             }
         })
 }
@@ -150,7 +150,7 @@ module.exports.addProduct = function (req, res) {
                                                     } else {
                                                         res
                                                             .status(201)
-                                                            .json(new_Product)
+                                                            .json({success:true,message:"product Added"})
                                                     }
                                                 })
                                         }
@@ -219,7 +219,7 @@ module.exports.deleteProduct = function (req, res) {
                         } else {
                             res
                                 .status(204)
-                                .json(data)
+                                .json({success:true,message:"Product deleted"})
                         }
                     })
             }
@@ -255,7 +255,7 @@ module.exports.getProduct = function (req, res) {
             else {
                 res
                     .status(201)
-                    .json(Product)
+                    .json({success :true,product:Product})
             }
         })
 }
@@ -301,7 +301,7 @@ module.exports.getProductsByCategory = function (req, res) {
                         else {
                             res
                                 .status(200)
-                                .json(productsfetched)
+                                .json({success:true,products:productsfetched})
                         }
                     })
             }

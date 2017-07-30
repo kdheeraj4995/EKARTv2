@@ -6,6 +6,13 @@ app.service('productService', function ($http) {
         })
     }
 
+    this.getProduct = function (productid) {
+        return $http({
+            method: 'GET',
+            url: '/api/product/'+productid
+        })
+    }
+
     this.addProduct = function (product) {
         return $http({
             method: 'POST',

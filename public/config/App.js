@@ -22,6 +22,12 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 			access: {
 				restricted: false
 			}
+		}).when('/product/:productid', {
+			templateUrl: 'views/singleproduct.html',
+			controller :productController,
+			access: {
+				restricted: false
+			}
 		}).when('/Admin', {
 			templateUrl: 'views/admin.html',
 			access: {

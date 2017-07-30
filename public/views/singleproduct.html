@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" href="css/singleproduct.css">
+<div class="container" style="margin-top:175px">
+    <div ng-if="error" class="alert alert-danger" role="alert">
+        <p>{{message}}</p>
+    </div>
+    <div ng-if="success" class="alert alert-success" role="alert">
+        <p>{{message}}</p>
+    </div>
+    <div ng-if="!error">
+        <div class="col-xs-6 w3-animate-left">
+            <div class="img">
+                <img height="192px" width="192px" alt="{{product.name}}" src="/EKART/imageDisplay/${product.id}">
+                <div class="desc">
+                    <strong>{{product.name}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 w3-animate-right">
+            <div class="img">
+                <div class="desc">
+                    <p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="{{product.name}}" readonly="readonly">
+                        </div>
+                        <!-- <div class="form-group">
+                      <span>{{product.name}}</span>
+                    </div>-->
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="Rs. {{product.price}}" readonly="readonly">
+                        </div>
+                        <form action="#AddToCart">
+                            <input type="number" value="1" name="quantity" class=" form-control  btn-block  ">
+                            <br>
+                            <input type="submit" value="Add to Cart" class="btn btn-xs btn-success btn-block">
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

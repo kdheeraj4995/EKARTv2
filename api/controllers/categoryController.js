@@ -18,7 +18,7 @@ module.exports.getCategories = function (req, res) {
             else {
                 res
                     .status(201)
-                    .json(Categories)
+                    .json({success:true,categories:Categories})
             }
         })
 }
@@ -47,7 +47,7 @@ module.exports.getCategory = function (req, res) {
             else {
                 res
                     .status(201)
-                    .json(Category)
+                    .json({success:true,category:Category})
             }
         })
 }
@@ -65,7 +65,7 @@ module.exports.addCategory = function (req, res) {
             } else {
                 res
                     .status(201)
-                    .json(new_Category)
+                    .json({success:true,message:"Category added"})
             }
         })
 }
@@ -103,7 +103,7 @@ module.exports.deleteCategory = function (req, res) {
                         } else {
                             res
                                 .status(204)
-                                .json(data);
+                                .json({success : true , message:"Category Deleted"});
                         }
                     })
             }
