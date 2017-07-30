@@ -2,3 +2,14 @@
 	display: flex;
 	justify-content: space-around;
 }
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+    background: none;
+    outline: none;
+    text-shadow: none; 
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 45%;
+	margin: 0px auto;
+}

@@ -6,7 +6,12 @@ body {
 	padding: 0;
 	position: relative;
 }
-
+.container-custom{
+	padding:25px auto;
+	margin: 25px auto;
+	position: relative;
+	max-width:800px;
+}
 .container {
 	padding:25px auto;
 	margin: 25px auto;
