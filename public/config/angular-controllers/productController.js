@@ -1,9 +1,8 @@
 app.controller('productController', productController);
 function productController(productService, $scope, $routeParams) {
-    var categoryid = $routeParams.categoryid;
-    var productid = $routeParams.productid;
-    if (categoryid) {
-        console.log(categoryid);
+    
+    $scope.getProductsByCategory = function () {
+        var categoryid = $routeParams.categoryid;
         productService.getProductsByCategory(categoryid)
             .then(function (result) {
                 if (result.data.success) {
@@ -19,7 +18,9 @@ function productController(productService, $scope, $routeParams) {
                 $scope.message = error.data.message
             });
     }
-    if (productid) {
+
+    $scope.getProduct = function () {
+        var productid = $routeParams.productid;
         productService.getProduct(productid)
             .then(function (result) {
                 if (result.data.success) {
@@ -27,12 +28,12 @@ function productController(productService, $scope, $routeParams) {
                 }
                 else {
                     $scope.error = true,
-                    $scope.message = result.data.message;
+                        $scope.message = result.data.message;
                 }
             })
             .catch(function (error) {
                 $scope.error = true,
-                $scope.message = error.data.message
+                    $scope.message = error.data.message
             });
     }
 }

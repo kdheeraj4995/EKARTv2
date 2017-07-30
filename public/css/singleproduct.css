@@ -15,8 +15,8 @@ body {
 }
 
 div.img {
-	margin-left: 15%
-	margin-right:15%
+	margin-left: 15%;
+	margin-right:15%;
 	border: 1px solid #ccc;
 	float: left;
 	padding:150px auto;

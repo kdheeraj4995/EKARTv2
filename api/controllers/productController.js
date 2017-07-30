@@ -18,7 +18,7 @@ module.exports.getProducts = function (req, res) {
                     .status(500)
                     .json({ success: false, message: err.message })
             }
-            else if (!Products) {
+            else if (Products.length == 0) {
                 res
                     .status(200)
                     .json({ success: false, message: "No Products found " })
@@ -292,13 +292,14 @@ module.exports.getProductsByCategory = function (req, res) {
                                 .status(500)
                                 .json({ success: false, message: err.message })
                         }
-                        else if (!productsfetched) {
+                        else if (productsfetched.length == 0) {
                             res
                                 .status(200)
                                 .json({ success: false, message: "Products not found" })
                             return;
                         }
                         else {
+                             console.log(productsfetched)
                             res
                                 .status(200)
                                 .json({success:true,products:productsfetched})
