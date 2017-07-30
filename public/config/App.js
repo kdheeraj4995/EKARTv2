@@ -16,8 +16,9 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 			access: {
 				restricted: false
 			}
-		}).when('/product/:category', {
+		}).when('/product/category/:categoryid', {
 			templateUrl: 'views/products.html',
+			controller :productController,
 			access: {
 				restricted: false
 			}

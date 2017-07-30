@@ -40,7 +40,7 @@ router
     .delete([access.authenticate,access.Med],productController.deleteProduct)
 
 router
-    .route('/product/category/:categoryname')
+    .route('/product/category/:categoryid')
     .get(productController.getProductsByCategory)
     
 module.exports = router;

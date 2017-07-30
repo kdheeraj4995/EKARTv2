@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
-<body>
+<body >
 	<div class="w3-top">
 		<nav>
 			<ul class="w3-navbar w3-black w3-card-2 w3-large" style="opacity: 0.9">
@@ -48,7 +48,7 @@
 			</ul>
 			<ul ng-controller="categoryController" class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 " Style="width: 70%; margin-left: 15%; margin-top: -2px">
 				<li ng-repeat="category in categories">
-					<a href="product/{{category.name}}" class="w3-hover-none w3-text-black w3-hover-text-red">
+					<a href="product/category/{{category._id}}" class="w3-hover-none w3-text-black w3-hover-text-red">
 						<i class="fa fa-list-alt" aria-hidden="true"></i> 
 						<span> {{category.name | camelCase}}</span>
 					</a>
@@ -72,10 +72,12 @@
 	<script type="text/javascript" src="config/App.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/categoryController.js"></script>
+	<script type="text/javascript" src="config/angular-controllers/productController.js"></script>
 
 	<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
 	<script type="text/javascript" src="config/CustomServices/userService.js"></script>
 	<script type="text/javascript" src="config/CustomServices/categoryService.js"></script>
+	<script type="text/javascript" src="config/CustomServices/productService.js"></script>
 
 	<script type="text/javascript" src="config/CustomFilters/customFilter.js"></script>
 </body>

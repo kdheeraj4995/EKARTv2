@@ -13,4 +13,11 @@ app.service('productService', function ($http) {
             data: product
         })
     }
+
+    this.getProductsByCategory = function(categoryid){
+         return $http({
+            method: 'GET',
+            url: '/api/product/category/'+categoryid
+        })
+    }
 })

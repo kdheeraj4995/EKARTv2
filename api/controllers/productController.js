@@ -261,19 +261,15 @@ module.exports.getProduct = function (req, res) {
 }
 
 module.exports.getProductsByCategory = function (req, res) {
-    var categoryname = req.params.categoryname;
-    if (categoryname == undefined || categoryname == "") {
+    var categoryid = req.params.categoryid;
+    if (categoryid == undefined || categoryid == "") {
         res
             .status(400)
             .json({ success: false, message: "category name should not be empty" })
         return;
     }
     category
-        .findOne({
-            "name": categoryname
-        }, {
-            name: true
-        }, function (err, obj) {
+        .findById(categoryid, function (err, obj) {
             if (err) {
                 res
                     .status(500)
