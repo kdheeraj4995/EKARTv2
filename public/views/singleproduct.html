@@ -1,15 +1,17 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/singleproduct.css"> -->
 <div class="container-custom" style="margin-top:175px" ng-init="getProduct()">
-    <div ng-if="error" class="alert alert-danger" role="alert">
+    <div ng-if="success" class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <p>{{message}}</p>
     </div>
-    <div ng-if="success" class="alert alert-success" role="alert">
+    <div ng-if="error" class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <p>{{message}}</p>
     </div>
     <div ng-if="!error">
         <div class="col-xs-6 w3-animate-left">
             <div class="img">
-                <img height="192px" width="192px" alt="{{product.name}}" src="/EKART/imageDisplay/${product.id}">
+                <img height="292px" width="292px" alt="{{product.name}}" ng-src="images/corousel/smart.jpg">
                 <div class="desc">
                     <strong>{{product.name}}</strong>
                 </div>

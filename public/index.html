@@ -46,6 +46,12 @@
                         <i class="fa fa-cog fa-spin  fa-fw"></i>
 					</a>
 				</li>
+				<li style="float: right" data-ng-if="loggedIn">
+					<a href="Admin/category" class="w3-hover-none w3-text-sand w3-hover-text-white">
+                        <span>Admin Category</span>
+                        <i class="fa fa-cog fa-spin  fa-fw"></i>
+					</a>
+				</li>
 			</ul>
 			<ul ng-controller="categoryController" class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 " Style="width: 70%; margin-left: 15%; margin-top: -2px">
 				<li ng-repeat="category in categories">
@@ -74,6 +80,7 @@
 	<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/categoryController.js"></script>
 	<script type="text/javascript" src="config/angular-controllers/productController.js"></script>
+	<script type="text/javascript" src="config/angular-controllers/admincategoryController.js"></script>
 
 	<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
 	<script type="text/javascript" src="config/CustomServices/userService.js"></script>

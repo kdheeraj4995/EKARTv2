@@ -295,11 +295,10 @@ module.exports.getProductsByCategory = function (req, res) {
                         else if (productsfetched.length == 0) {
                             res
                                 .status(200)
-                                .json({ success: false, message: "Products not found" })
+                                .json({ success: false, message: "No products found in category: "+obj.name })
                             return;
                         }
                         else {
-                             console.log(productsfetched)
                             res
                                 .status(200)
                                 .json({success:true,products:productsfetched})

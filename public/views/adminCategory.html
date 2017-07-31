@@ -1,0 +1,56 @@
+<div style="margin-top:75px;margin-bottom: 25px" class="container"><br>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div>
+                <div class="form-group">
+                    <div ng-if="success" class="alert alert-success fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p>{{message}}</p>
+                    </div>
+                    <div ng-if="error" class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p>{{message}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- <label for="Category Name">Category Name</label> -->
+                    <input type="text" class="form-control" placeholder="Enter Category name" ng-model="Editcategory.name" id="Category Name">
+                </div>
+                <div class="form-group">
+                    <!-- <label for="Category Description">Category Description</label> -->
+                    <textarea id="Category Description" class="form-control" placeholder="Enter Description" ng-model="Editcategory.description"></textarea>
+                </div>
+                <div class="btn-group  btn-group-justified ">
+                    <a class="btn btn-sm btn-success btn-block" ng-disabled="!Editcategory.name" ng-click="addCategory()"><span class="glyphicon glyphicon-cog"></span> {{action}}</a>
+                    <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editcategory.name && !Editcategory.description" ng-click="reset()"><span class="glyphicon glyphicon-trash"></span> Reset</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div>
+        <table class="w3-table-all w3-card-4" ng-init="getCategories()">
+            <thead>
+                <tr class="w3-dark-grey">
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th style="text-align:center">Manipulate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="category in categories">
+                    <td width="15%">{{category.name | camelCase}}</td>
+                    <td width="70%">{{category.description}}</td>
+                    <td width="15%">
+                        <div class="btn-group  btn-group-justified ">
+                            <a class="btn btn-xs btn-primary btn-block" ng-click="editCategory(category)"><span class="glyphicon glyphicon-cog"></span> Edit</a>
+                            <a class="btn btn-xs btn-danger btn-block" ng-click="deleteCategory(category._id)"><span class="glyphicon glyphicon-trash" ></span> Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

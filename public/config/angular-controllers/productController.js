@@ -36,4 +36,9 @@ function productController(productService, $scope, $routeParams) {
                     $scope.message = error.data.message
             });
     }
+    
+    $scope.addProduct = function(){
+        
+    }
+    
 }

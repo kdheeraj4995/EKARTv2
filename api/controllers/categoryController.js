@@ -102,7 +102,7 @@ module.exports.deleteCategory = function (req, res) {
                                 .json({ success: false, message: err.message })
                         } else {
                             res
-                                .status(204)
+                                .status(200)
                                 .json({success : true , message:"Category Deleted"});
                         }
                     })
