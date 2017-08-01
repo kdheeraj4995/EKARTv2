@@ -4,6 +4,9 @@ var category = mongoose.model('CategoryModel');
 module.exports.getCategories = function (req, res) {
     category
         .find()
+        .select({
+            __v:false
+        })
         .exec(function (err, Categories) {
             if (err) {
                 res
