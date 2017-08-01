@@ -1,7 +1,6 @@
 <div style="margin-top:75px;margin-bottom: 25px" class="container"><br>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div>
                 <div class="form-group">
                     <div ng-if="success" class="alert alert-success fade in">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -21,17 +20,16 @@
                     <textarea id="Category Description" class="form-control" placeholder="Enter Description" ng-model="Editcategory.description"></textarea>
                 </div>
                 <div class="btn-group  btn-group-justified ">
-                    <a class="btn btn-sm btn-success btn-block" ng-disabled="!Editcategory.name" ng-click="addCategory()"><span class="glyphicon glyphicon-cog"></span> {{action}}</a>
-                    <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editcategory.name && !Editcategory.description" ng-click="reset()"><span class="glyphicon glyphicon-trash"></span> Reset</a>
+                    <a class="btn btn-sm btn-success btn-block" ng-disabled="!Editcategory.name" ng-click="addCategory()"><span class="glyphicon glyphicon-floppy-save"></span> {{action}}</a>
+                    <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editcategory.name && !Editcategory.description" ng-click="reset()"><span class="glyphicon glyphicon-list-alt"></span>  Reset</a>
                 </div>
-            </div>
         </div>
     </div>
 
     <br><br>
 
-    <div>
-        <table class="w3-table-all w3-card-4" ng-init="getCategories()">
+    <div style="overflow: auto; height: 400px;">
+        <table class="table table-bordered table-hover" ng-init="getCategories()">
             <thead>
                 <tr class="w3-dark-grey">
                     <th>Category</th>
@@ -40,7 +38,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="category in categories">
+                <tr data-ng-repeat="category in categories | filter:Editcategory">
                     <td width="15%">{{category.name | camelCase}}</td>
                     <td width="70%">{{category.description}}</td>
                     <td width="15%">

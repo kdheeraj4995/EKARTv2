@@ -26,8 +26,8 @@ router
 router
     .route('/category/:categoryId')
     .get([access.authenticate,access.Max],categoryController.getCategory)
-    .put([access.authenticate,access.Max],categoryController.updateCategory)
-    .delete([access.authenticate,access.Max],categoryController.deleteCategory)
+    .put([access.authenticate,access.Med],categoryController.updateCategory)
+    .delete([access.authenticate,access.Med],categoryController.deleteCategory)
 
 router
     .route('/product')

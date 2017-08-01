@@ -13,10 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
 
-<body >
+<body style="overflow: hidden">
 	<div class="w3-top">
 		<nav>
-			<ul class="w3-navbar w3-black w3-card-2 w3-large" style="opacity: 0.9">
+			<ul class="w3-navbar w3-black w3-card-2" style="opacity: 0.9">
 				<li>
 					<a href="" ng-controller="userController as vm" ng-click="vm.homepage()" class="w3-hover-none w3-text-sand w3-hover-text-white"> 
                         <i class="fa fa-home"></i> E K A R T
@@ -36,21 +36,26 @@
 				</li>
 				<li style="float: right" data-ng-if="loggedIn">
 					<a href="" ng-controller="userController as vm" ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
-                        <span>Logout</span>
                         <i class="fa fa-sign-out"></i>
 					</a>
 				</li>
-				<li style="float: right" data-ng-if="loggedIn">
-					<a href="Admin" class="w3-hover-none w3-text-sand w3-hover-text-white">
-                        <span>Admin</span>
-                        <i class="fa fa-cog fa-spin  fa-fw"></i>
-					</a>
-				</li>
-				<li style="float: right" data-ng-if="loggedIn">
-					<a href="Admin/category" class="w3-hover-none w3-text-sand w3-hover-text-white">
-                        <span>Admin Category</span>
-                        <i class="fa fa-cog fa-spin  fa-fw"></i>
-					</a>
+				<li class="w3-right" data-ng-if="loggedIn">
+					<div class="w3-dropdown-hover w3-hover-none ">
+						<a href="" class="w3-black w3-dropdown-hover  w3-text-sand ">
+                        	Admin Zone <i class="fa fa-circle-o-notch fa-spin  fa-fw"></i>
+						</a>
+						<div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+							<a href="Admin/product" class="w3-bar-item w3-button">
+                        		<span>Product</span>
+							</a>
+							<a href="Admin/category" class="w3-bar-item w3-button">
+                        		<span>Category</span>
+							</a>
+							<a href="Admin/user" class="w3-bar-item w3-button">
+                        		<span>User Access</span>
+							</a>
+						</div>
+					</div>
 				</li>
 			</ul>
 			<ul ng-controller="categoryController" class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 " Style="width: 70%; margin-left: 15%; margin-top: -2px">
@@ -68,26 +73,29 @@
 
 	</div>
 
+	<div>
+		<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
+
+		<script type="text/javascript" src="config/App.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/categoryController.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/productController.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/admincategoryController.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/adminproductController.js"></script>
+
+		<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
+		<script type="text/javascript" src="config/CustomServices/userService.js"></script>
+		<script type="text/javascript" src="config/CustomServices/categoryService.js"></script>
+		<script type="text/javascript" src="config/CustomServices/productService.js"></script>
+
+		<script type="text/javascript" src="config/CustomFilters/customFilter.js"></script>
+	</div>
 
 
-	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
-	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
-
-	<script type="text/javascript" src="config/App.js"></script>
-	<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
-	<script type="text/javascript" src="config/angular-controllers/categoryController.js"></script>
-	<script type="text/javascript" src="config/angular-controllers/productController.js"></script>
-	<script type="text/javascript" src="config/angular-controllers/admincategoryController.js"></script>
-
-	<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
-	<script type="text/javascript" src="config/CustomServices/userService.js"></script>
-	<script type="text/javascript" src="config/CustomServices/categoryService.js"></script>
-	<script type="text/javascript" src="config/CustomServices/productService.js"></script>
-
-	<script type="text/javascript" src="config/CustomFilters/customFilter.js"></script>
 </body>
 
 </html>

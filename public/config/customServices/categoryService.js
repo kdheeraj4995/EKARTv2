@@ -8,6 +8,15 @@ app.service('categoryService', function ($http) {
         })
     }
 
+    this.EditCategory = function (category) {
+        console.log(category._id);
+        return $http({
+            method: 'PUT',
+            url: '/api/category/'+category._id,
+            data: category
+        })
+    }
+    
     this.getCategories = function () {
         return $http({
             method: 'GET',

@@ -3,23 +3,42 @@ function admincategoryController(categoryService, $scope, $route) {
     $scope.action = "Add Category";
 
     $scope.addCategory = function () {
-        categoryService.addCategory($scope.Editcategory)
-            .then(function (result) {
-                if (result.data.success) {
-                    $scope.success = true
-                    $scope.message = result.data.message;
-                    $scope.getCategories();
-                    $scope.Editcategory = {};
-                }
-                else {
+        if ($scope.action == "Add Category") {
+            categoryService.addCategory($scope.Editcategory)
+                .then(function (result) {
+                    if (result.data.success) {
+                        $scope.success = true
+                        $scope.message = result.data.message;
+                        $scope.reset();
+                    }
+                    else {
+                        $scope.error = true,
+                        $scope.message = result.data.message;
+                    }
+                })
+                .catch(function (error) {
                     $scope.error = true,
-                    $scope.message = result.data.message;
-                }
-            })
-            .catch(function (error) {
-                $scope.error = true,
-                $scope.message = error.data.message
-            });
+                    $scope.message = error.data.message
+                });
+        }
+        else {
+            categoryService.EditCategory($scope.Editcategory)
+                .then(function (result) {
+                    if (result.data.success) {
+                        $scope.success = true
+                        $scope.message = result.data.message;
+                        $scope.reset();
+                    }
+                    else {
+                        $scope.error = true,
+                        $scope.message = result.data.message;
+                    }
+                })
+                .catch(function (error) {
+                    $scope.error = true,
+                     $scope.message = error.data.message
+                });
+        }
     }
 
     $scope.getCategories = function () {
@@ -61,19 +80,16 @@ function admincategoryController(categoryService, $scope, $route) {
         categoryService.deleteCategory(categoryid)
             .then(function (result) {
                 if (result.data.success) {
-                    console.log("In controller 1")
                     $scope.success = true;
                     $scope.message = result.data.message;
-                    $scope.getCategories();
+                    $scope.reset();
                 }
                 else {
-                    console.log("In controller 2")
                     $scope.error = true,
                     $scope.message = result.data.message;
                 }
             })
             .catch(function (error) {
-                console.log("In controller 3")
                 $scope.error = true,
                 $scope.message = error.data.message
             });
@@ -87,8 +103,7 @@ function admincategoryController(categoryService, $scope, $route) {
 
     $scope.reset = function () {
         $scope.Editcategory = {};
-        $scope.action = "Add Category";
-        //$route.reload();
+        $scope.action="Add Category";
+        $scope.getCategories();
     }
-
 }

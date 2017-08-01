@@ -41,6 +41,13 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 				restricted: false,
 				role: "Admin"
 			}
+		}).when('/Admin/product', {
+			templateUrl: 'views/adminProduct.html',
+			controller:adminproductController,
+			access: {
+				restricted: false,
+				role: "Admin"
+			}
 		}).when('/Forbidden', {
 			templateUrl: 'views/forbidden.html',
 			access: {
