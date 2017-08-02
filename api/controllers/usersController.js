@@ -145,7 +145,7 @@ module.exports.addRole = function (req, res) {
                             else {
                                 res
                                     .status(201)
-                                    .json({success:true,message:"Role Added"})
+                                    .json({ success: true, message: "Role Added" })
                             }
                         })
                 }
@@ -159,7 +159,7 @@ module.exports.addRole = function (req, res) {
     }
 }
 
-module.exports.deleteRole = function(req,res){
+module.exports.deleteRole = function (req, res) {
     var username = req.body.username;
     var role = req.body.role;
     if (username == undefined || username == "") {
@@ -196,7 +196,7 @@ module.exports.deleteRole = function(req,res){
                         .json({ success: false, message: "User not found" })
                 }
                 else if (User.role.indexOf(role) != -1) {
-                    User.role.splice(User.role.indexOf(role),1);
+                    User.role.splice(User.role.indexOf(role), 1);
                     User
                         .save(function (err, updated_USer) {
                             if (err) {
@@ -208,7 +208,7 @@ module.exports.deleteRole = function(req,res){
                             else {
                                 res
                                     .status(201)
-                                    .json({success:true,message:"Role Deleted"})
+                                    .json({ success: true, message: "Role Deleted" })
                             }
                         })
                 }
@@ -220,4 +220,39 @@ module.exports.deleteRole = function(req,res){
                 }
             })
     }
+}
+
+module.exports.getUsers = function (req, res) {
+    var query = {};
+    var select ={
+        __v:false,
+        password:false,
+        role:false
+    }
+    if (req.query && req.query.role) {
+        query = {
+            role: { $in: [req.query.role] }
+        }
+    }
+    user
+        .find(query,select)
+        .exec(function (err, Suppliers) {
+            console.log(Suppliers)
+            if (err) {
+                res
+                    .status(500)
+                    .json({ success: false, message: err.message })
+            }
+            else if (!Suppliers) {
+                res
+                    .status(200)
+                    .json({ success: false, message: "No Suppliers found " })
+            }
+            else {
+                res
+                    .status(201)
+                    .json({ success: true, suppliers: Suppliers })
+            }
+        })
+
 }

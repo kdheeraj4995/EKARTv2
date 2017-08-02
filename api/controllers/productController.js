@@ -11,7 +11,7 @@ module.exports.getProducts = function (req, res) {
             __v: false
         })
         .populate('category', 'name')
-        .populate('seller', 'name')
+        .populate('seller', 'name username')
         .exec(function (err, Products) {
             if (err) {
                 res
@@ -37,7 +37,7 @@ module.exports.addProduct = function (req, res) {
     var productdesc = req.body.desc;
     var productprice = parseInt(req.body.price);
     var quantity = parseInt(req.body.quantity);
-    var suppliername = req.body.suppliername;
+    var supplierid = req.body.supplierid;
     var query = {};
     if (req.isAdmin) {
         if (suppliername == undefined || suppliername == "") {
@@ -48,7 +48,7 @@ module.exports.addProduct = function (req, res) {
         }
         else {
             query = {
-                "username": suppliername,
+                "_id": supplierid,
                 "role": "Supplier"
             }
         }

@@ -1,14 +1,16 @@
-<div style="margin-top:100px;" class="container">
-    <div class="row">
+<div style="margin-top:100px;" class="container-fluid">
+    <div class="row" ng-init="initialize()">
+        <div class="col-md-4 col-md-offset-2">
+            <input type="text" class="form-control" placeholder="Product name" ng-model="Editproduct.name">
+            <textarea class="form-control" placeholder="Product Description" ng-model="Editproduct.description" style="height: 100px"></textarea>
+            <input type="number" class="form-control" placeholder="Product Price" ng-model="Editproduct.price">
+        </div>
         <div class="col-md-4 col-md-offset-0">
-            <input type="text" class="form-control" placeholder="Enter Product name" ng-model="Editproduct.name" id="Product Name">
-            <textarea id="Product Description" class="form-control" placeholder="Enter Description" ng-model="Editproduct.description"></textarea>
-            <input type="number" class="form-control" placeholder="Enter Product name" ng-model="Editproduct.price" id="Product Price">
-            <select class="form-control">
-                <option class="form-control">Seller</option>
+            <input type="number" class="form-control" placeholder="Quantity" ng-model="Editproduct.quantity">
+            <select class="form-control" ng-model = "Editproduct.seller" ng-options="seller.username for seller in sellers">
             </select>
-            <select class="form-control">
-                <option class="form-control">Category</option>
+            <select class="form-control" ng-model = "Editproduct.category" ng-options="category.name for category in categories" >
+                
             </select>
             <label class="btn btn-default btn-file form-control" style="text-align: right">
                 <span>Click here to add an Image : Browse</span>
@@ -16,8 +18,41 @@
             </label>
             <div class="btn-group  btn-group-justified ">
                 <a class="btn btn-sm btn-success btn-block" ng-disabled="!Editproduct.name" ng-click="addProduct()"><span class="glyphicon glyphicon-floppy-save"></span> {{action}}</a>
-                <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editproduct.name && !Editproduct.description" ng-click="reset()"><span class="glyphicon glyphicon-list-alt"></span>  Reset</a>
+                <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editproduct.name && !Editproduct.description" ng-click="initialize()"><span class="glyphicon glyphicon-list-alt"></span>  Reset</a>
             </div>
         </div>
- 
+    </div>
+
+    <br>
+    <br>
+    
+    <div style="overflow-y:auto;overflow-x: hidden;height:250px" ng-init="getProducts()">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-1"><h4 style="text-align: center">S.No</h4></div>
+                <div class="col-md-3"><h4 style="text-align: center">Product</h4></div>
+                <div class="col-md-2"><h4 style="text-align: center">Price</h4></div>
+                <div class="col-md-2"><h4 style="text-align: center">Category</h4></div>
+                <div class="col-md-2"><h4 style="text-align: center">Seller</h4></div>
+                <div class="col-md-2"><h4 style="text-align: center">Update or Delete</h4></div>
+            </div>
+        </div>
+        <div style="overflow-y:auto;overflow-x: hidden;height:200px">
+            <div class=" row " data-ng-repeat="product in products">
+                <div class="col-md-10 col-md-offset-1 ">
+                    <div class="col-md-1"><input type="text" name="" value="{{$index +1}}" class="form-control " readonly></div>
+                    <div class="col-md-3 "><input type="text " name=" " value="{{product.name | camelCase}} " class="form-control " readonly></div>
+                    <div class="col-md-2 "><input type="number " name=" " value="{{product.price | currency:'&#8377'}} " class="form-control " readonly></div> 
+                    <div class="col-md-2"><input type="text " name=" " value="{{product.category.name | camelCase}} " class="form-control " readonly></div>
+                    <div class="col-md-2"><input type="text " name=" " value="{{product.seller.name | camelCase }} " class="form-control  " readonly></div>
+                    <div class="col-md-2">
+                        <div class="btn-group btn-group-justified ">
+                            <a class="btn btn-sm btn-primary btn-block form-control " ng-click="editProduct(product) ">View / Edit</a>
+                            <a class="btn btn-sm btn-danger btn-block form-control " ng-click="deleteProduct(product._id)"><span class="glyphicon glyphicon-trash " ></span> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

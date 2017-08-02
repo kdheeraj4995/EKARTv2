@@ -27,29 +27,23 @@
     <div ng-init="getCategories()">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="col-md-1">
-                    <h4 style="text-align: center">S.No</h4>
-                </div>
-                <div class="col-md-2">
-                    <h4 style="text-align: center">Category</h4>
-                </div>
-                <div class="col-md-7">
-                    <h4 style="text-align: center">Description</h4>
-                </div>
-                <div class="col-md-2">
-                    <h4 style="text-align: center">Update or Delete</h4>
-                </div>
+                <div class="col-md-1"><h4 style="text-align: center">S.No</h4></div>
+                <div class="col-md-2"><h4 style="text-align: center">Category</h4></div>
+                <div class="col-md-7"><h4 style="text-align: center">Description</h4></div>
+                <div class="col-md-2"><h4 style="text-align: center">Update or Delete</h4></div>
             </div>
         </div>
-        <div class="row" data-ng-repeat="category in categories | filter:Editcategory |limitTo:10">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="col-md-1"><input type="text" name="" value="{{$index +1}}" class="form-control" readonly></div>
-                <div class="col-md-2"><input type="text" name="" value="{{category.name | camelCase}}" class="form-control" readonly></div>
-                <div class="col-md-7"><textarea rows="1" cols="" class="form-control" readonly>{{category.description}}</textarea></div>
-                <div class="col-md-2">
-                    <div class="btn-group  btn-group-justified ">
-                        <a class="btn btn-sm btn-primary btn-block form-control " ng-click="editCategory(category)"><span class="glyphicon glyphicon-cog"></span> Edit</a>
-                        <a class="btn btn-sm btn-danger btn-block form-control " ng-click="deleteCategory(category._id)"><span class="glyphicon glyphicon-trash" ></span> Delete</a>
+        <div style="overflow-y:auto;overflow-x: hidden;height:250px">
+            <div class="row" data-ng-repeat="category in categories | filter:Editcategory">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-1"><input type="text" name="" value="{{$index +1}}" class="form-control" readonly></div>
+                    <div class="col-md-2"><input type="text" name="" value="{{category.name | camelCase}}" class="form-control" readonly></div>
+                    <div class="col-md-7"><textarea rows="1" cols="" class="form-control" readonly>{{category.description}}</textarea></div>
+                    <div class="col-md-2">
+                        <div class="btn-group  btn-group-justified ">
+                            <a class="btn btn-sm btn-primary btn-block form-control " ng-click="editCategory(category)">View / Edit</a>
+                            <a class="btn btn-sm btn-danger btn-block form-control " ng-click="deleteCategory(category._id)"><span class="glyphicon glyphicon-trash" ></span> Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>

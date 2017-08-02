@@ -6,8 +6,9 @@ var productController = require('../controllers/productController');
 var access = require('../controllers/access');
 
 router
-    .route('/users/register')
+    .route('/users')
     .post(userController.register)
+    .get(userController.getUsers)
 
 router
     .route('/users/login')
