@@ -1,6 +1,7 @@
 var app = angular.module("myApp", ["ngRoute", "angular-jwt"]);
 
-app.config(['$routeProvider','$locationProvider', function ($routeProvider,$locationProvider) {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
+	$httpProvider.interceptors.push('AuthInterceptor');
 	$routeProvider
 		.when('/Login', {
 			templateUrl: 'views/login.html',
@@ -18,34 +19,28 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 			}
 		}).when('/product/category/:categoryid', {
 			templateUrl: 'views/products.html',
-			controller :productController,
+			controller: productController,
 			access: {
 				restricted: false
 			}
 		}).when('/product/:productid', {
 			templateUrl: 'views/singleproduct.html',
-			controller :productController,
+			controller: productController,
 			access: {
 				restricted: false
 			}
-		}).when('/Admin', {
-			templateUrl: 'views/admin.html',
-			access: {
-				restricted: false,
-				role: "Admin"
-			}
 		}).when('/Admin/category', {
 			templateUrl: 'views/adminCategory.html',
-			controller:admincategoryController,
+			controller: admincategoryController,
 			access: {
-				restricted: false,
+				restricted: true,
 				role: "Admin"
 			}
 		}).when('/Admin/product', {
 			templateUrl: 'views/adminProduct.html',
-			controller:adminproductController,
+			controller: adminproductController,
 			access: {
-				restricted: false,
+				restricted: true,
 				role: "Admin"
 			}
 		}).when('/Forbidden', {
@@ -59,7 +54,7 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider,$loca
 				restricted: false
 			}
 		});
-		$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(true);
 }]);
 
 
@@ -72,11 +67,13 @@ function run($rootScope, $location, $window) {
 		if (($rootScope.loggedIn) && (Basic.indexOf($location.path()) !== -1)) {
 			$location.path('/');
 		}
-		else 
-		{
+		else {
 			if (nextRoute.access !== undefined && nextRoute.access.restricted) {
 				if ($rootScope.loggedIn) {
-					if ($rootScope.access !== nextRoute.access.role) {
+					/* if ($rootScope.access !== nextRoute.access.role) {
+						$location.path('/Forbidden');
+					} */
+					if ($rootScope.access.indexOf(nextRoute.access.role) == -1) {
 						$location.path('/Forbidden');
 					}
 				}

@@ -26,21 +26,21 @@ module.exports.getProducts = function (req, res) {
             else {
                 res
                     .status(201)
-                    .json({success:true,products:Products})
+                    .json({ success: true, products: Products })
             }
         })
 }
 
 module.exports.addProduct = function (req, res) {
-    var categoryname = req.body.categoryname;
+    var categoryid = req.body.category._id;
     var productname = req.body.name;
-    var productdesc = req.body.desc;
+    var productdesc = req.body.description;
     var productprice = parseInt(req.body.price);
     var quantity = parseInt(req.body.quantity);
-    var supplierid = req.body.supplierid;
+    var supplierid = req.body.seller._id;
     var query = {};
     if (req.isAdmin) {
-        if (suppliername == undefined || suppliername == "") {
+        if (supplierid == undefined || supplierid == "") {
             res
                 .status(400)
                 .json({ success: false, message: "Supplier name  should not be empty" })
@@ -59,7 +59,7 @@ module.exports.addProduct = function (req, res) {
             "role": "Supplier"
         }
     }
-    if (categoryname == undefined || categoryname == "") {
+    if (categoryid == undefined || categoryid == "") {
         res
             .status(400)
             .json({ success: false, message: "category name should not be empty" })
@@ -92,7 +92,7 @@ module.exports.addProduct = function (req, res) {
     else {
         category
             .findOne({
-                "name": categoryname
+                "_id": categoryid
             }, {
                 name: true
             }, function (err, obj) {
@@ -150,7 +150,7 @@ module.exports.addProduct = function (req, res) {
                                                     } else {
                                                         res
                                                             .status(201)
-                                                            .json({success:true,message:"product Added"})
+                                                            .json({ success: true, message: "product Added" })
                                                     }
                                                 })
                                         }
@@ -164,7 +164,7 @@ module.exports.addProduct = function (req, res) {
                                                             .json({ success: false, message: err.message })
                                                     } else {
                                                         res
-                                                            .status(203)
+                                                            .status(200)
                                                             .json({ success: true, message: "Product updated" })
                                                     }
                                                 })
@@ -218,8 +218,8 @@ module.exports.deleteProduct = function (req, res) {
                                 .json({ success: false, message: err.message })
                         } else {
                             res
-                                .status(204)
-                                .json({success:true,message:"Product deleted"})
+                                .status(200)
+                                .json({ success: true, message: "Product deleted" })
                         }
                     })
             }
@@ -255,7 +255,7 @@ module.exports.getProduct = function (req, res) {
             else {
                 res
                     .status(201)
-                    .json({success :true,product:Product})
+                    .json({ success: true, product: Product })
             }
         })
 }
@@ -295,15 +295,157 @@ module.exports.getProductsByCategory = function (req, res) {
                         else if (productsfetched.length == 0) {
                             res
                                 .status(200)
-                                .json({ success: false, message: "No products found in category: "+obj.name })
+                                .json({ success: false, message: "No products found in category: " + obj.name })
                             return;
                         }
                         else {
                             res
                                 .status(200)
-                                .json({success:true,products:productsfetched})
+                                .json({ success: true, products: productsfetched })
                         }
                     })
             }
         })
+}
+
+module.exports.editProduct = function (req, res) {
+    var categoryid = req.body.category._id;
+    var productname = req.body.name;
+    var productdesc = req.body.description;
+    var productid = req.body._id;
+    var productprice = parseInt(req.body.price);
+    var quantity = parseInt(req.body.quantity);
+    var supplierid = req.body.seller._id;
+    var query = {};
+    if (req.isAdmin) {
+        if (supplierid == undefined || supplierid == "") {
+            res
+                .status(400)
+                .json({ success: false, message: "Supplier name  should not be empty" })
+            return;
+        }
+        else {
+            query = {
+                "_id": supplierid,
+                "role": "Supplier"
+            }
+        }
+    }
+    else {
+        query = {
+            "_id": req.userid,
+            "role": "Supplier"
+        }
+    }
+    if (categoryid == undefined || categoryid == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "category name should not be empty" })
+        return;
+    }
+    else if (productid == undefined || productid == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Product id should not be empty" })
+        return;
+    }
+    else if (productname == undefined || productname == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Product name should not be empty" })
+        return;
+    }
+    else if (productdesc == undefined || productdesc == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Description should not be empty" })
+        return;
+    }
+    else if (productprice == undefined || productprice == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Product price should not be empty" })
+        return;
+    }
+    else if (quantity == undefined || quantity == "") {
+        res
+            .status(400)
+            .json({ success: false, message: "Product price should not be empty" })
+        return;
+    }
+    else {
+        category
+            .findOne({
+                "_id": categoryid
+            }, {
+                name: true
+            }, function (err, obj) {
+                if (err) {
+                    res
+                        .status(500)
+                        .json({ success: false, message: err.message })
+                    return;
+                }
+                else if (!obj) {
+                    res
+                        .status(200)
+                        .json({ success: false, message: "Category not found" })
+                    return;
+                }
+                else {
+                    user
+                        .findOne(query, function (err, supp) {
+                            if (err) {
+                                res
+                                    .status(500)
+                                    .json({ success: false, message: err.message })
+                            }
+                            else if (!supp) {
+                                res
+                                    .status(200)
+                                    .json({ success: false, message: "Invalid Supplier" })
+                            }
+                            else {
+                                product
+                                    .findOne({
+                                        _id: productid
+                                    }, function (err, existing_product) {
+                                        if (err) {
+                                            res
+                                                .status(500)
+                                                .json({ success: false, message: err.message })
+                                        }
+                                        else if (!existing_product) {
+                                            res
+                                                .status(200)
+                                                .json({ success: false, message: "Product not found" })
+                                            return;
+                                        }
+                                        else {
+                                            existing_product.name= productname
+                                            existing_product.description= productdesc,
+                                            existing_product.price= productprice,
+                                            existing_product.quantity= quantity,
+                                            existing_product.category= obj._id,
+                                            existing_product.seller= supp._id
+
+                                            existing_product
+                                                .save(function (err) {
+                                                    if (err) {
+                                                        res
+                                                            .status(500)
+                                                            .json({ success: false, message: err.message })
+                                                    } else {
+                                                        res
+                                                            .status(203)
+                                                            .json({ success: true, message: "Product updated" })
+                                                    }
+                                                })
+                                        }
+                                    })
+                            }
+                        })
+                }
+            })
+    }
 }

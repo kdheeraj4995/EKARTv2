@@ -11,14 +11,14 @@
                     <p>{{message}}</p>
                 </div>
             </div>
-            <!-- <label for="Category Name">Category Name</label> -->
-            <input type="text" class="form-control" placeholder="Enter Category name" ng-model="Editcategory.name" id="Category Name">
-            <!-- <label for="Category Description">Category Description</label> -->
-            <textarea id="Category Description" class="form-control" placeholder="Enter Description" ng-model="Editcategory.description"></textarea>
-            <div class="btn-group  btn-group-justified ">
-                <a class="btn btn-sm btn-success btn-block" ng-disabled="!Editcategory.name" ng-click="addCategory()"><span class="glyphicon glyphicon-floppy-save"></span> {{action}}</a>
-                <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editcategory.name && !Editcategory.description" ng-click="reset()"><span class="glyphicon glyphicon-list-alt"></span>  Reset</a>
-            </div>
+            <form name="CategoryForm">
+                <input type="text" class="form-control" placeholder="Enter Category name" ng-model="Editcategory.name" required>
+                <textarea id="Category Description" class="form-control" placeholder="Enter Description" ng-model="Editcategory.description"></textarea>
+                <div class="btn-group  btn-group-justified ">
+                    <a class="btn btn-sm btn-success btn-block" ng-disabled="CategoryForm.$invalid" ng-click="addCategory()"><span class="glyphicon glyphicon-floppy-save"></span> {{action}}</a>
+                    <a class="btn btn-sm btn-warning btn-block" ng-disabled="!Editcategory.name && !Editcategory.description" ng-click="reset()"><span class="glyphicon glyphicon-list-alt"></span>  Reset</a>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -27,10 +27,18 @@
     <div ng-init="getCategories()">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="col-md-1"><h4 style="text-align: center">S.No</h4></div>
-                <div class="col-md-2"><h4 style="text-align: center">Category</h4></div>
-                <div class="col-md-7"><h4 style="text-align: center">Description</h4></div>
-                <div class="col-md-2"><h4 style="text-align: center">Update or Delete</h4></div>
+                <div class="col-md-1">
+                    <h4 style="text-align: center">S.No</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4 style="text-align: center">Category</h4>
+                </div>
+                <div class="col-md-7">
+                    <h4 style="text-align: center">Description</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4 style="text-align: center">Update or Delete</h4>
+                </div>
             </div>
         </div>
         <div style="overflow-y:auto;overflow-x: hidden;height:250px">

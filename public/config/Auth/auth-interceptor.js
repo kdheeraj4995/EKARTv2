@@ -1,9 +1,8 @@
-/* app.factory('AuthInterceptor', AuthInterceptor);
+app.factory('AuthInterceptor', AuthInterceptor);
 
 function AuthInterceptor($location, $q, $window) {
   return {
-    request: request/* ,
-    response: response,
+    request: request,
     responseError: responseError 
   };
 
@@ -17,7 +16,12 @@ function AuthInterceptor($location, $q, $window) {
 
 
   function responseError(rejection) {
-    if (rejection.status === 401 || rejection.status === 403) {
+    if (rejection.status === 401) {
+      delete $window.sessionStorage.token;
+      delete $window.sessionStorage.user;
+      $location.path('/Login');
+    }
+     if (rejection.status === 403) {
       delete $window.sessionStorage.token;
       delete $window.sessionStorage.user;
       $location.path('/Forbidden');
@@ -25,4 +29,4 @@ function AuthInterceptor($location, $q, $window) {
     return $q.reject(rejection);
   } 
 }
- */
+ 

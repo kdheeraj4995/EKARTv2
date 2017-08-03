@@ -38,6 +38,7 @@ router
 router
     .route('/product/:productid')
     .get(productController.getProduct)
+    .post([access.authenticate,access.Med],productController.editProduct)
     .delete([access.authenticate,access.Med],productController.deleteProduct)
 
 router

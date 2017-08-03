@@ -237,7 +237,6 @@ module.exports.getUsers = function (req, res) {
     user
         .find(query,select)
         .exec(function (err, Suppliers) {
-            console.log(Suppliers)
             if (err) {
                 res
                     .status(500)

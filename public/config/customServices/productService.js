@@ -1,4 +1,5 @@
 app.service('productService', function ($http) {
+
     this.getProducts = function () {
         return $http({
             method: 'GET',
@@ -21,10 +22,25 @@ app.service('productService', function ($http) {
         })
     }
 
+    this.editProduct = function (product) {
+        return $http({
+            method: 'POST',
+            url: '/api/product/'+product._id,
+            data: product
+        })
+    }
+
     this.getProductsByCategory = function(categoryid){
          return $http({
             method: 'GET',
             url: '/api/product/category/'+categoryid
+        })
+    }
+
+    this.deleteProduct = function(productid){
+         return $http({
+            method: 'DELETE',
+            url: '/api/product/' + productid
         })
     }
 })
