@@ -224,18 +224,26 @@ module.exports.deleteRole = function (req, res) {
 
 module.exports.getUsers = function (req, res) {
     var query = {};
-    var select ={
-        __v:false,
-        password:false,
-        role:false
+    var select = {
+        __v: false,
+        password: false,
+        role: false
     }
     if (req.query && req.query.role) {
-        query = {
-            role: { $in: [req.query.role] }
+        if (req.isAdmin) {
+            query = {
+                role: { $in: [req.query.role] }
+            }
+        }
+        if (req.isSupplier) {
+            query = {
+                _id : req.userid,
+                role: { $in: [req.query.role] }
+            }
         }
     }
     user
-        .find(query,select)
+        .find(query, select)
         .exec(function (err, Suppliers) {
             if (err) {
                 res

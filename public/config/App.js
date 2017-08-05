@@ -17,6 +17,13 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 			access: {
 				restricted: false
 			}
+		}).when('/Supplier', {
+			templateUrl: 'views/supplier.html',
+			controller: supplierproductController,
+			access: {
+				restricted: true,
+				role: "Supplier"
+			}
 		}).when('/product/category/:categoryid', {
 			templateUrl: 'views/products.html',
 			controller: productController,
@@ -63,6 +70,10 @@ function run($rootScope, $location, $window) {
 	$rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
 		$rootScope.loggedIn = ($window.sessionStorage.token) ? true : false;
 		$rootScope.access = $window.sessionStorage.role;
+		if ($rootScope.loggedIn) {
+			$rootScope.isAdmin = ($window.sessionStorage.role.indexOf("Admin") !== -1) ? true : false;
+			$rootScope.isSupplier = ($window.sessionStorage.role.indexOf("Supplier") !== -1) ? true : false;
+		}
 		var Basic = ['/Login', '/Register'];
 		if (($rootScope.loggedIn) && (Basic.indexOf($location.path()) !== -1)) {
 			$location.path('/');
@@ -70,9 +81,6 @@ function run($rootScope, $location, $window) {
 		else {
 			if (nextRoute.access !== undefined && nextRoute.access.restricted) {
 				if ($rootScope.loggedIn) {
-					/* if ($rootScope.access !== nextRoute.access.role) {
-						$location.path('/Forbidden');
-					} */
 					if ($rootScope.access.indexOf(nextRoute.access.role) == -1) {
 						$location.path('/Forbidden');
 					}

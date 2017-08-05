@@ -95,8 +95,11 @@ var authenticate = function (req, res, next) {
                             req.user = decoded.username;
                             req.role = user_requested.role;
                             req.userid = user_requested._id;
-                            if (req.role.indexOf('Admin') !== -1) {
+                            if (req.role.indexOf('Admin') != -1) {
                                 req.isAdmin = true;
+                            }
+                            if (req.role.indexOf('Supplier') != -1) {
+                                 req.isSupplier = true;
                             }
                             next();
                         }

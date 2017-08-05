@@ -1,5 +1,5 @@
-app.controller('adminproductController', adminproductController);
-function adminproductController(categoryService, productService, userService, $scope) {
+app.controller('supplierproductController', supplierproductController);
+function supplierproductController(categoryService, productService, userService, $scope) {
     $scope.action = "Add Product";
 
     $scope.Editproduct = {
@@ -74,6 +74,7 @@ function adminproductController(categoryService, productService, userService, $s
                 if (result.data.success) {
                     $scope.sellers = result.data.suppliers;
                     $scope.Editproduct.seller = $scope.sellers[0];
+                    $scope.getProductsBySupplier($scope.Editproduct.seller._id);
                 }
                 else {
                     $scope.error = true,
@@ -86,25 +87,8 @@ function adminproductController(categoryService, productService, userService, $s
             });
     }
 
-    $scope.getProducts = function () {
-        productService.getProducts()
-            .then(function (result) {
-                if (result.data.success) {
-                    $scope.products = result.data.products;
-                }
-                else {
-                    $scope.error = true,
-                        $scope.message = result.data.message;
-                }
-            })
-            .catch(function (error) {
-                $scope.error = true,
-                    $scope.message = error.data.message
-            });
-    }
-
-    $scope.getProductsBySupplier = function(){
-        productService.getProducts($scope.sellers._id)
+    $scope.getProductsBySupplier = function(supplierid){
+        productService.getProducts(supplierid)
             .then(function (result) {
                 if (result.data.success) {
                     $scope.products = result.data.products;
@@ -152,7 +136,6 @@ function adminproductController(categoryService, productService, userService, $s
         $scope.getCategories();
         $scope.getSuppliers();
         $scope.action = "Add Product";
-        $scope.getProducts();
         $scope.Editproduct = {
             category: {}, seller: {}
         }

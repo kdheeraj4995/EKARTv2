@@ -5,8 +5,14 @@ var user = mongoose.model('UserModel');
 
 
 module.exports.getProducts = function (req, res) {
+    var query = {};
+    if(req.query && req.query.seller){
+        query = {
+            seller : req.query.seller
+        }
+    }
     product
-        .find()
+        .find(query)
         .select({
             __v: false
         })

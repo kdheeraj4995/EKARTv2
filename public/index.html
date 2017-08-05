@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
 
-<body style="overflow: hidden">
+<body >
 	<div class="w3-top">
 		<nav>
 			<ul class="w3-navbar w3-black w3-card-2" style="opacity: 0.9">
@@ -39,7 +39,7 @@
                         <i class="fa fa-sign-out"></i>
 					</a>
 				</li>
-				<li class="w3-right" data-ng-if="loggedIn">
+				<li class="w3-right" data-ng-if="isAdmin && loggedIn">
 					<div class="w3-dropdown-hover w3-hover-none ">
 						<a href="" class="w3-black w3-dropdown-hover  w3-text-sand ">
                         	Admin Zone <i class="fa fa-circle-o-notch fa-spin  fa-fw"></i>
@@ -57,6 +57,11 @@
 						</div>
 					</div>
 				</li>
+				<li style="float: right" data-ng-if="isSupplier && loggedIn">
+					<a href="Supplier" ng-controller="userController as vm" class="w3-hover-none w3-text-sand w3-hover-text-white">
+						Supplier Zone <i class="fa fa-circle-o-notch fa-spin  fa-fw"></i>
+					</a>
+				</li>
 			</ul>
 			<ul ng-controller="categoryController" class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 " Style="width: 70%; margin-left: 15%; margin-top: -2px">
 				<li ng-repeat="category in categories">
@@ -69,8 +74,19 @@
 		</nav>
 	</div>
 
-	<div data-ng-view>
+	<div data-ng-view></div>
 
+
+	<div class="w3-bottom">
+		<nav>
+			<ul class="w3-navbar w3-black w3-card-2 " style="opacity: 0.9;text-align: center">
+				<li>
+					<a href=""  class="w3-hover-none w3-text-sand w3-hover-text-white "> 
+                        Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2017
+                    </a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 
 	<div>
@@ -84,6 +100,7 @@
 		<script type="text/javascript" src="config/angular-controllers/userController.js"></script>
 		<script type="text/javascript" src="config/angular-controllers/categoryController.js"></script>
 		<script type="text/javascript" src="config/angular-controllers/productController.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/supplierproductController.js"></script>
 		<script type="text/javascript" src="config/angular-controllers/admincategoryController.js"></script>
 		<script type="text/javascript" src="config/angular-controllers/adminproductController.js"></script>
 
@@ -94,8 +111,6 @@
 
 		<script type="text/javascript" src="config/CustomFilters/customFilter.js"></script>
 	</div>
-
-
 </body>
 
 </html>

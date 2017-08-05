@@ -8,7 +8,7 @@ var access = require('../controllers/access');
 router
     .route('/users')
     .post(userController.register)
-    .get(userController.getUsers)
+    .get([access.authenticate,access.Med],userController.getUsers)
 
 router
     .route('/users/login')
