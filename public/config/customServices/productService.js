@@ -1,6 +1,13 @@
 app.service('productService', function ($http) {
 
-    this.getProducts = function (sellerId) {
+    this.getProducts = function () {
+        return $http({
+            method: 'GET',
+            url: '/api/product'
+        })
+    }
+
+     this.getProductsBySeller = function (sellerId) {
         return $http({
             method: 'GET',
             url: '/api/product?seller='+sellerId

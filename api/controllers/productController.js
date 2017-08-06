@@ -6,7 +6,7 @@ var user = mongoose.model('UserModel');
 
 module.exports.getProducts = function (req, res) {
     var query = {};
-    if(req.query && req.query.seller){
+    if(req.query.seller !='' && req.query.seller !=undefined){
         query = {
             seller : req.query.seller
         }
@@ -246,7 +246,7 @@ module.exports.getProduct = function (req, res) {
             __v: false
         })
         .populate('category', 'name')
-        .populate('seller', 'name')
+        .populate('seller', 'name username')
         .exec(function (err, Product) {
             if (err) {
                 res

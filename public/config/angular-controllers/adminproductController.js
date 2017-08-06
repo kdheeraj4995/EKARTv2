@@ -104,7 +104,7 @@ function adminproductController(categoryService, productService, userService, $s
     }
 
     $scope.getProductsBySupplier = function(){
-        productService.getProducts($scope.sellers._id)
+        productService.getProductsBySeller($scope.sellers._id)
             .then(function (result) {
                 if (result.data.success) {
                     $scope.products = result.data.products;

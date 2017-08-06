@@ -13,3 +13,7 @@
 	width: 45%;
 	margin: 0px auto;
 }
+
+input:read-only{
+ background-color: white;
+}

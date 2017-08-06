@@ -1,6 +1,5 @@
-<!-- <link rel="stylesheet" type="text/css" href="css/products.css"> -->
 <div class="container" style="margin-top:100px" ng-init="getProductsByCategory()">
-    <div ng-if="success" class="alert alert-success fade in">
+    <!--  <div ng-if="success" class="alert alert-success fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <p>{{message}}</p>
     </div>
@@ -23,10 +22,28 @@
                             <input type="number" value="1" name="quantity" class=" form-control  btn-block  ">
                             <input type="submit" value="Add to Cart" class="btn btn-xs btn-success btn-block">
                         </form>
-                    </p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="thumbnail col-md-2  w3-animate-zoom" ng-repeat="product in products" style="margin:1.6%" >
+            <a href="/product/{{product._id}}"> 
+                <img height="150px" width="150px" alt="{{product.name}}" ng-src="images/corousel/smart.jpg">
+			</a>
+            <div class="caption">
+                <input type="text" class="form-control input-sm" placeholder="Username" value="{{product.name | camelCase}}" readonly>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon" id="price">Price</span>
+                    <input type="number" class="form-control"  value="{{product.price}}" aria-describedby="price"readonly>
+                </div>
+                <div class="input-group">
+                    <input type="number" class="form-control input-sm" placeholder="Quantity">
+                    <span class="input-group-btn">
+                    <button class="btn btn-success btn-sm" type="button">Add to Cart</button>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
