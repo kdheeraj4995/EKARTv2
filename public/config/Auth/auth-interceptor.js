@@ -13,8 +13,6 @@ function AuthInterceptor($location, $q, $window) {
     }
     return config;
   }
-
-
   function responseError(rejection) {
     if (rejection.status === 401) {
       delete $window.sessionStorage.token;

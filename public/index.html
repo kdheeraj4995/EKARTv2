@@ -34,6 +34,7 @@
                         <i class="fa fa-sign-in"></i>
 					</a>
 				</li>
+
 				<li style="float: right" data-ng-if="loggedIn">
 					<a href="" ng-controller="userController as vm" ng-click="vm.logout()" class="w3-hover-none w3-text-sand w3-hover-text-white">
                         <i class="fa fa-sign-out"></i>
@@ -61,6 +62,9 @@
 					<a href="Supplier" ng-controller="userController as vm" class="w3-hover-none w3-text-sand w3-hover-text-white">
 						Supplier Zone <i class="fa fa-circle-o-notch fa-spin  fa-fw"></i>
 					</a>
+				</li>
+				<li style="float: right" ng-controller="cartController"> 
+					<a href="cart"  class="w3-hover-none w3-text-sand w3-hover-text-white" ><i class="fa fa-shopping-cart fa-lg">&nbsp&nbsp</i><span class="w3-badge w3-dark-grey">{{cartSize}}</span></a>
 				</li>
 			</ul>
 			<ul ng-controller="categoryController" class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 " Style="width: 70%; margin-left: 15%; margin-top: -2px">
@@ -103,6 +107,7 @@
 		<script type="text/javascript" src="config/angular-controllers/supplierproductController.js"></script>
 		<script type="text/javascript" src="config/angular-controllers/admincategoryController.js"></script>
 		<script type="text/javascript" src="config/angular-controllers/adminproductController.js"></script>
+		<script type="text/javascript" src="config/angular-controllers/cartController.js"></script>
 
 		<script type="text/javascript" src="config/auth/Auth-Interceptor.js"></script>
 		<script type="text/javascript" src="config/CustomServices/userService.js"></script>

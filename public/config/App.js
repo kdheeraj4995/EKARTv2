@@ -36,6 +36,12 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 			access: {
 				restricted: false
 			}
+		}).when('/cart', {
+			templateUrl: 'views/cart.html',
+			controller: cartController,
+			access: {
+				restricted: false
+			}
 		}).when('/Admin/category', {
 			templateUrl: 'views/adminCategory.html',
 			controller: admincategoryController,

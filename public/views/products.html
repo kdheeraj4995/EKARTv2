@@ -26,22 +26,33 @@
             </div>
         </div>
     </div> -->
-    <div class="row">
-        <div class="thumbnail col-md-2  w3-animate-zoom" ng-repeat="product in products" style="margin:1.6%" >
-            <a href="/product/{{product._id}}"> 
+    <div ng-if="success" class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <p>{{message}}</p>
+    </div>
+    <div ng-if="error" class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <p>{{message}}</p>
+    </div>
+    <div ng-hide="error">
+        <div class="row">
+            <div class="thumbnail col-md-2  w3-animate-zoom" ng-repeat="product in products" style="margin:1.6%">
+                <a href="/product/{{product._id}}"> 
                 <img height="150px" width="150px" alt="{{product.name}}" ng-src="images/corousel/smart.jpg">
-			</a>
-            <div class="caption">
-                <input type="text" class="form-control input-sm" placeholder="Username" value="{{product.name | camelCase}}" readonly>
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon" id="price">Price</span>
-                    <input type="number" class="form-control"  value="{{product.price}}" aria-describedby="price"readonly>
-                </div>
-                <div class="input-group">
-                    <input type="number" class="form-control input-sm" placeholder="Quantity">
-                    <span class="input-group-btn">
-                    <button class="btn btn-success btn-sm" type="button">Add to Cart</button>
+			    </a>
+                <div class="caption">
+                    <input type="text"  class="form-control input-sm" placeholder="Username" value="{{product.name | camelCase}}" readonly>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon" id="price">Price</span>
+                        <input type="number" class="form-control" ng-value="{{product.price}}" aria-describedby="price" readonly>
+                        <span class="input-group-addon">{{product.quantity}}</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" ng-model="product.req" ng-init="product.req=1" ng-value="{{product.req}}" class="form-control input-sm" placeholder="Quantity">
+                        <span class="input-group-btn">
+                    <button class="btn btn-success btn-sm" ng-click="AddToCart(product)">Add to Cart</button>
                     </span>
+                    </div>
                 </div>
             </div>
         </div>
