@@ -6,9 +6,9 @@ var user = mongoose.model('UserModel');
 
 module.exports.getProducts = function (req, res) {
     var query = {};
-    if(req.query.seller !='' && req.query.seller !=undefined){
+    if (req.query.seller != '' && req.query.seller != undefined) {
         query = {
-            seller : req.query.seller
+            seller: req.query.seller
         }
     }
     product
@@ -275,7 +275,8 @@ module.exports.getProductsByCategory = function (req, res) {
         return;
     }
     category
-        .findById(categoryid, function (err, obj) {
+        .findById(categoryid)
+        .exec(function (err, obj) {
             if (err) {
                 res
                     .status(500)
@@ -290,9 +291,10 @@ module.exports.getProductsByCategory = function (req, res) {
             }
             else {
                 product
-                    .find({
-                        category: obj._id
-                    }, function (err, productsfetched) {
+                    .find({category: obj._id})
+                    .populate('category', 'name')
+                    .populate('seller', 'name username')
+                    .exec(function (err, productsfetched) {
                         if (err) {
                             res
                                 .status(500)
@@ -310,7 +312,7 @@ module.exports.getProductsByCategory = function (req, res) {
                                 .json({ success: true, products: productsfetched })
                         }
                     })
-            }
+                }
         })
 }
 
@@ -428,12 +430,12 @@ module.exports.editProduct = function (req, res) {
                                             return;
                                         }
                                         else {
-                                            existing_product.name= productname
-                                            existing_product.description= productdesc,
-                                            existing_product.price= productprice,
-                                            existing_product.quantity= quantity,
-                                            existing_product.category= obj._id,
-                                            existing_product.seller= supp._id
+                                            existing_product.name = productname
+                                            existing_product.description = productdesc,
+                                                existing_product.price = productprice,
+                                                existing_product.quantity = quantity,
+                                                existing_product.category = obj._id,
+                                                existing_product.seller = supp._id
 
                                             existing_product
                                                 .save(function (err) {
