@@ -13,7 +13,7 @@
             <input type="text " name=" " value="{{product.seller.username | camelCase }} " class="form-control  " readonly>
             <input type="text" value="Availability : {{product.quantity}}" name="quantity" class=" form-control  btn-block " readonly>
             <input type="number" min="1" max="{{product.quantity}}" value="1" name="quantity" class=" form-control  btn-block ">
-            <input type="submit" value="Add to Cart" class="btn btn-info btn-block">
+            <input type="submit" value="Add to Cart" ng-click="AddToCart(product)" class="btn btn-info btn-block">
         </div>
     </div>
 </div>

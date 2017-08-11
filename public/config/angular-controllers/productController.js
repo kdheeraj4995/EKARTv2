@@ -56,11 +56,11 @@ function productController(productService, $scope, $routeParams, $window, $rootS
                     alert("Limit Exceeded");
                     return
                 }
-                else{
-                    data[exist].req +=product.req;
+                else {
+                    data[exist].req += product.req;
                 }
             }
-            else{
+            else {
                 console.log("New Element")
                 data.push(product);
             }
@@ -68,4 +68,10 @@ function productController(productService, $scope, $routeParams, $window, $rootS
         $window.localStorage.cart = JSON.stringify(data);
         $rootScope.$emit("CartUpdated");
     }
+
+  /*   $rootScope.$on("CartItemUpdated", function (events,item) {
+        console.log("Hi")
+        console.log(item)
+        $scope.AddToCart(item);
+    }); */
 }

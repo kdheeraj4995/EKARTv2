@@ -1,9 +1,9 @@
 <div class="container" style="margin-top:100px">
     <div class="media " ng-repeat="item in cart track by item._id">
-        <div class="media-left">
-            <img ng-src="images/corousel/demo.png" class="media-object" style="width:65px;">
+        <div class="media-left ">
+            <img ng-src="images/corousel/demo.png" class="media-object" style="width:70px;">
         </div>
-        <div class="media-body">
+        <div class="media-body ">
             <div class="input-group">
                 <input type="text" class="form-control" value="{{item.name | camelCase}}" aria-describedby="namesellerprice" readonly>
                 <span class="input-group-addon" id="namesellerprice">Seller</span>
@@ -15,22 +15,22 @@
                 <span class="input-group-addon " id="RequestedQuantity">Requested Quantity</span>
                 <input type="number" class="form-control" ng-model="item.req" ng-value="{{item.req}}" aria-describedby="RequestedQuantity">
                 <span class="input-group-btn">
-                    <button class="btn btn-success ">Update</button>
-                    <button class="btn btn-danger ">Delete</button>
+                    <button class="btn btn-success " type="submit" ng-click="UpdateCart(item)">Update</button>
+                    <button type="submit" class="btn btn-danger " ng-click="DeleteItem(item)">Delete</button>
                 </span>
             </div>
         </div>
         <div class="media-right">
-            <input type="text" class="form-control" value="Total Cost" readonly style="text-align: center">
+           <div class="input-group">
+                <span class="input-group-addon" id="namesellerprice">{{item.req}} x Price of 1 Item</span>
+                <input type="text" class="form-control"  readonly>
+            </div>
             <div class="input-group">
-                <span class="input-group-addon" id="namesellerprice">{{item.req}} x {{item.price}} = {{item.req * item.price}}</span>
-                <input type="text" class="form-control" value="Rs" readonly>
+                <span class="input-group-addon" id="namesellerprice">{{item.req * item.price | currency:'&#8377'}}</span>
+                <input type="text" class="form-control" readonly>
             </div>
         </div>
     </div>
-    <br><br>
-    <div>
-        <span class="form-control input-lg" style="text-align: right">Hello</span>
-    </div>
-
+    <br>
+    <button class="btn btn-info btn-block" ng-hide="cartSize == 0" type="submit">Proceed To Pay : {{cost | currency:'&#8377'}}</button>
 </div>
