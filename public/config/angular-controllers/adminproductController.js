@@ -12,12 +12,21 @@ function adminproductController(categoryService, productService, userService, $s
     }
 
     $scope.addProduct = function (product) {
+        product.image = $scope.myFile;
         if ($scope.action == "Add Product") {
             productService.addProduct(product)
                 .then(function (result) {
                     if (result.data.success) {
-                        $scope.success = true,
-                        $scope.message = result.data.message;
+                        productService.uploadFile(product.image, result.data.id)
+                            .then(function (res) {
+                                $scope.success = true,
+                                $scope.message = result.data.message;
+                            })
+                            .catch(function (error) {
+                                $scope.error = true,
+                                $scope.message = "Product added : Image Upload Failed";
+                            })
+
                         $scope.initialize();
                     }
                     else {
@@ -27,25 +36,34 @@ function adminproductController(categoryService, productService, userService, $s
                 })
                 .catch(function (error) {
                     $scope.error = true,
-                        $scope.message = error.data.message
+                    $scope.message = error.data.message
                 });
         }
         else {
             productService.editProduct(product)
                 .then(function (result) {
                     if (result.data.success) {
+                        productService.uploadFile(product.image, result.data.id)
+                            .then(function (res) {
+                                $scope.success = true,
+                                $scope.message = result.data.message;
+                            })
+                            .catch(function (error) {
+                                $scope.error = true,
+                                $scope.message = "Product added : Image Upload Failed";
+                            })
                         $scope.success = true,
                         $scope.message = result.data.message;
                         $scope.initialize();
                     }
                     else {
                         $scope.error = true,
-                            $scope.message = result.data.message;
+                        $scope.message = result.data.message;
                     }
                 })
                 .catch(function (error) {
                     $scope.error = true,
-                        $scope.message = error.data.message
+                    $scope.message = error.data.message
                 });
         }
 
@@ -103,7 +121,7 @@ function adminproductController(categoryService, productService, userService, $s
             });
     }
 
-    $scope.getProductsBySupplier = function(){
+    $scope.getProductsBySupplier = function () {
         productService.getProductsBySeller($scope.sellers._id)
             .then(function (result) {
                 if (result.data.success) {
@@ -131,7 +149,7 @@ function adminproductController(categoryService, productService, userService, $s
 
     $scope.deleteProduct = function (productid) {
         productService.deleteProduct(productid)
-         .then(function (result) {
+            .then(function (result) {
                 if (result.data.success) {
                     $scope.success = true;
                     $scope.message = result.data.message;
@@ -139,12 +157,12 @@ function adminproductController(categoryService, productService, userService, $s
                 }
                 else {
                     $scope.error = true,
-                    $scope.message = result.data.message;
+                        $scope.message = result.data.message;
                 }
             })
             .catch(function (error) {
                 $scope.error = true,
-                $scope.message = error.data.message
+                    $scope.message = error.data.message
             });
     }
 

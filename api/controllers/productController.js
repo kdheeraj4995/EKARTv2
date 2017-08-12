@@ -171,7 +171,7 @@ module.exports.addProduct = function (req, res) {
                                                     } else {
                                                         res
                                                             .status(200)
-                                                            .json({ success: true, message: "Product updated" })
+                                                            .json({ success: true, message: "Product updated" , id : existing_product._id})
                                                     }
                                                 })
                                         }
@@ -446,7 +446,7 @@ module.exports.editProduct = function (req, res) {
                                                     } else {
                                                         res
                                                             .status(203)
-                                                            .json({ success: true, message: "Product updated" })
+                                                            .json({ success: true, message: "Product updated" , id : existing_product._id })
                                                     }
                                                 })
                                         }

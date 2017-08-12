@@ -38,7 +38,7 @@
         <div class="row">
             <div class="thumbnail col-md-2  w3-animate-zoom" ng-repeat="product in products" style="margin:1.6%">
                 <a href="/product/{{product._id}}"> 
-                <img height="150px" width="150px" alt="{{product.name}}" ng-src="images/corousel/smart.jpg">
+                <img height="150px" width="150px" alt="{{product.name}}" ng-src="images/products/{{product._id}}.jpg">
 			    </a>
                 <div class="caption">
                     <input type="text"  class="form-control input-sm" placeholder="Username" value="{{product.name | camelCase}}" readonly>

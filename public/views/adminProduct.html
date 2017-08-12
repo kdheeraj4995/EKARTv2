@@ -26,7 +26,7 @@
                 <select class="form-control" ng-model="Editproduct.category" ng-options="category.name| camelCase for category in categories"required></select>
                 <label class="btn btn-default btn-file form-control" style="text-align: right">
                     <span>Click here to add an Image : Browse</span>
-                    <input type="file" style="display: none;">
+                    <input type="file" file-model = "myFile" style="display: none;">
                 </label>
                 <div class="btn-group  btn-group-justified ">
                     <a class="btn btn-sm btn-success btn-block" ng-disabled="ProductForm.$invalid" ng-click="addProduct(Editproduct)"><span class="glyphicon glyphicon-floppy-save"></span> {{action}}</a>
