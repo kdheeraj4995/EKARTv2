@@ -1,7 +1,9 @@
 <div class="container" style="margin-top:100px">
     <div class="media " ng-repeat="item in cart track by item._id">
         <div class="media-left ">
-            <img ng-src="images/products/{{item._id}}.jpg" class="media-object" style="width:70px;">
+            <a href="/product/{{item._id}}"> 
+                <img ng-src="images/products/{{item._id}}.jpg" class="media-object" style="width:70px;">
+            </a>
         </div>
         <div class="media-body ">
             <div class="input-group">
@@ -21,9 +23,9 @@
             </div>
         </div>
         <div class="media-right">
-           <div class="input-group">
+            <div class="input-group">
                 <span class="input-group-addon" id="namesellerprice">{{item.req}} x Price of 1 Item</span>
-                <input type="text" class="form-control"  readonly>
+                <input type="text" class="form-control" readonly>
             </div>
             <div class="input-group">
                 <span class="input-group-addon" id="namesellerprice">{{item.req * item.price | currency:'&#8377'}}</span>

@@ -25,33 +25,29 @@ function productController(productService, $scope, $routeParams, $window, $rootS
             .then(function (result) {
                 if (result.data.success) {
                     $scope.product = result.data.product;
+                    $scope.product.req = 1;
                 }
                 else {
                     $scope.error = true,
-                        $scope.message = result.data.message;
+                    $scope.message = result.data.message;
                 }
             })
             .catch(function (error) {
                 $scope.error = true,
-                    $scope.message = error.data.message
+                $scope.message = error.data.message
             });
     }
 
     $scope.AddToCart = function (product) {
         var exist;
         if ($window.localStorage.cart == undefined) {
-            console.log("Empty Cart")
             var data = [];
             data.push(product);
         }
         else {
-            console.log("Not Empty Cart")
             data = JSON.parse($window.localStorage.cart);
-            console.log(data);
             exist = data.findIndex(x => x._id === product._id);
-            console.log(exist)
             if (exist > -1) {
-                console.log("Already Existing Product")
                 if ((data[exist].req + product.req) > product.quantity) {
                     alert("Limit Exceeded");
                     return
@@ -61,17 +57,10 @@ function productController(productService, $scope, $routeParams, $window, $rootS
                 }
             }
             else {
-                console.log("New Element")
                 data.push(product);
             }
         }
         $window.localStorage.cart = JSON.stringify(data);
         $rootScope.$emit("CartUpdated");
     }
-
-  /*   $rootScope.$on("CartItemUpdated", function (events,item) {
-        console.log("Hi")
-        console.log(item)
-        $scope.AddToCart(item);
-    }); */
 }
