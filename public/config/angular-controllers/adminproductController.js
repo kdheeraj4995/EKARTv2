@@ -1,5 +1,6 @@
 app.controller('adminproductController', adminproductController);
 function adminproductController(categoryService, productService, userService, $scope) {
+    
     $scope.action = "Add Product";
 
     $scope.Editproduct = {

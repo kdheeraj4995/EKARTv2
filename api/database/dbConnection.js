@@ -25,3 +25,4 @@ process.on('SIGINT',function(){
 require('./User');
 require('./Category');
 require('./Product');
+require('./Cart');

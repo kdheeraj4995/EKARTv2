@@ -30,7 +30,7 @@ app.use('/api', router);
 
 // Server URL Rewriting to remove hashbang #! url (HTML5 will be enabled on angular js)
 app.use(function(req, res) {
-res.sendFile(path.join(__dirname, 'public','index.html'));
+  res.sendFile(path.join(__dirname, 'public','index.html'));
 });
 
 // ServerConfig - Start : Running Server on Port 3000 

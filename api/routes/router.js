@@ -3,18 +3,19 @@ var router = express.Router();
 
 var multer = require('multer')
 var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/images/products/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '.jpg')
-  }
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/products/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '.jpg')
+    }
 })
 var upload = multer({ storage: storage })
 
 var userController = require('../controllers/usersController');
 var categoryController = require('../controllers/categoryController');
 var productController = require('../controllers/productController');
+var cartController = require('../controllers/cartController');
 var access = require('../controllers/access');
 
 router
@@ -24,6 +25,10 @@ router
         console.log(req.files, 'files');
         res.end();
     })
+
+router
+    .route('/cart')
+    .post(cartController.AddtoCart)
 
 router
     .route('/users')

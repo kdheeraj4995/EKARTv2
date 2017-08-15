@@ -1,11 +1,20 @@
 app.controller('cartController', cartController);
-function cartController($scope, $window, $rootScope, $route) {
+function cartController($scope, $window, $rootScope, $route,$http) {
 
     $scope.cost = 0;
 
     $rootScope.$on("CartUpdated", function () {
         $scope.cartStart();
     });
+
+    $scope.Payment = function(cart){
+        console.log("Hello")
+        $http({
+            method: 'POST',
+            url: '/api/cart',
+            data: cart
+        })
+    }
 
     $scope.UpdateCart = function (product) {
         var exist;
