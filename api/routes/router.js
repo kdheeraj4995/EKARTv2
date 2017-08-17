@@ -28,7 +28,7 @@ router
 
 router
     .route('/cart')
-    .post(cartController.AddtoCart)
+    .post([access.authenticate, access.Min], cartController.AddtoCart)
 
 router
     .route('/users')
