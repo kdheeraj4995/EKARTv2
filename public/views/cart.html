@@ -33,7 +33,13 @@
             </div>
         </div>
     </div>
-    <br>
-    {{cart}}
-    <button class="btn btn-info btn-block" ng-hide="cartSize == 0" type="button" ng-click="Payment(cart)">Proceed To Pay : {{cost | currency:'&#8377'}}</button>
+    <br>    
+    <div class="btn-group btn-group-justified" role="group" >
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary">Previous Order</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button class="btn btn-primary " ng-hide="cartSize == 0" type="button" ng-click="Payment(cart)">Proceed To Pay : {{cost | currency:'&#8377'}}</button>
+        </div>
+    </div>
 </div>

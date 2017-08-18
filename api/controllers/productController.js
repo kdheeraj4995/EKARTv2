@@ -11,6 +11,8 @@ module.exports.getProducts = function (req, res) {
             seller: req.query.seller
         }
     }
+    console.log(req.query.seller);
+    console.log(query);
     product
         .find(query)
         .select({
@@ -30,6 +32,7 @@ module.exports.getProducts = function (req, res) {
                     .json({ success: false, message: "No Products found " })
             }
             else {
+                console.log(Products)
                 res
                     .status(201)
                     .json({ success: true, products: Products })

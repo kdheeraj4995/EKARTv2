@@ -9,7 +9,7 @@
     </div>
     <div ng-hide="error">
         <div class="row">
-            <div class="thumbnail col-md-2  w3-animate-zoom" ng-repeat="product in products" style="margin:1.6%">
+            <fieldset class="thumbnail col-md-2  w3-animate-zoom" ng-disabled="product.quantity<1" ng-repeat="product in products" style="margin:1.6%">
                 <a href="/product/{{product._id}}"> 
                 <img height="150px" width="150px" alt="{{product.name}}" ng-src="images/products/{{product._id}}.jpg">
 			    </a>
@@ -26,7 +26,7 @@
                         <button class="btn btn-success btn-sm" ng-click="AddToCart(product)">Add to Cart</button>
                         </span>
                     </div>
-                </div>
+                </fieldsetdiv>
             </div>
         </div>
     </div>

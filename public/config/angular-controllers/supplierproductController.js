@@ -88,7 +88,7 @@ function supplierproductController(categoryService, productService, userService,
     }
 
     $scope.getProductsBySupplier = function(supplierid){
-        productService.getProducts(supplierid)
+        productService.getProductsBySeller(supplierid)
             .then(function (result) {
                 if (result.data.success) {
                     $scope.products = result.data.products;
