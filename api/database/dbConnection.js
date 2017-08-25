@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-var dbUrl = 'mongodb://localhost:27017/Ekartv2';
+/* var dbUrl = 'mongodb://localhost:27017/Ekartv2'; */
+var dbUrl = 'mongodb://127.0.0.1:27017/Ekartv2';
 
 mongoose.connect(dbUrl, { useMongoClient: true });
 
@@ -14,12 +15,12 @@ mongoose.connection.on('disconnected',function(){
 mongoose.connection.on('error',function(error){
     console.log("Mongoose error : "+error);
 });
-process.on('SIGINT',function(){
+/* process.on('SIGINT',function(){
     mongoose.connection.close(function(){
         console.log("Reason : Ekartv2 Terminated ")
         process.exit(0);
     })
-})
+}) */
 
 // Importing Models
 require('./User');
